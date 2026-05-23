@@ -628,6 +628,72 @@ il<!DOCTYPE html>
         </div>
     </section>
 
+
+<!-- ══════════════════ HÉRITAGE & TRANSMISSION ══════════════════ -->
+<section style="background: linear-gradient(135deg, #0e0b06 0%, #1a130a 50%, #0e0b06 100%); border-top: 1px solid rgba(201,168,76,.25); border-bottom: 1px solid rgba(201,168,76,.25);">
+    <div class="section-inner" style="padding: 4rem 5%;">
+        <span class="section-label reveal">🌍 Transmission</span>
+        <h2 class="section-title reveal">Notre Culture, Notre Fierté</h2>
+        <div class="section-divider reveal">
+            <div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line rev"></div>
+        </div>
+
+        <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1100px; margin: 0 auto;">
+            <!-- Colonne Vidéo -->
+            <div style="order: 1;">
+                <video controls style="width: 100%; border-radius: 6px; border: 1px solid rgba(201,168,76,.3); box-shadow: 0 15px 40px rgba(0,0,0,.5);">
+                    <source src="culture.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture de vidéo.
+                </video>
+                <p style="font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.8rem; text-align: center;">
+                    🎬 Regardez et partagez
+                </p>
+            </div>
+
+            <!-- Colonne Texte -->
+            <div style="order: 0;">
+                <p style="font-size: 1.1rem; line-height: 2; color: rgba(245,236,215,.9); margin-bottom: 1.5rem; font-style: italic;">
+                    « La future génération doit comprendre que notre culture n'est pas un retard, mais une richesse. »
+                </p>
+                <p style="color: rgba(245,236,215,.8); line-height: 1.9; margin-bottom: 1.5rem;">
+                    Un peuple qui oublie ses traditions perd son identité, mais un peuple qui protège sa culture construit un avenir solide pour ses enfants. Nos langues, nos rites, nos danses, nos valeurs et nos ancêtres sont des trésors que nous devons transmettre avec fierté.
+                </p>
+                <p style="color: rgba(245,236,215,.8); line-height: 1.9; margin-bottom: 1.5rem;">
+                    La modernité ne doit pas effacer nos racines, elle doit les faire briller davantage. Valoriser notre culture aujourd'hui, c'est préparer une génération forte, consciente et respectée demain.
+                </p>
+
+                <!-- Hashtags -->
+                <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;">
+                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#CultureAfricaine</span>
+                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#FiertéAfricaine</span>
+                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#ValorisationCulturelle</span>
+                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Tradition</span>
+                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Héritage</span>
+                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#JeunesseAfricaine</span>
+                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Afrique</span>
+                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#IdentitéCulturelle</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive -->
+    <style>
+        @media (max-width: 768px) {
+            .section-inner .reveal {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            .section-inner .reveal > div:first-child {
+                order: -1 !important; /* La vidéo passe au-dessus sur mobile */
+            }
+        }
+    </style>
+</section>
+
+
+
+    
     <!-- Contact rapide -->
     <section id="contact" style="background: var(--bg-deep);">
         <div class="section-inner">
