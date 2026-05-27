@@ -1,4 +1,4 @@
-il<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
@@ -75,7 +75,7 @@ il<!DOCTYPE html>
             100% { opacity: 0; visibility: hidden; background-position: 100% 50%; }
         }
 
-        /* Particules */
+        /* Particules dorées */
         #particles {
             position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
         }
@@ -88,6 +88,27 @@ il<!DOCTYPE html>
             10% { opacity:.45; }
             90% { opacity:.15; }
             100% { opacity:0; transform:translateY(-100vh) scale(.3); }
+        }
+
+        /* Étoiles arc-en-ciel mobiles */
+        .rainbow-stars {
+            position: absolute; inset: 0; pointer-events: none; z-index: 4;
+        }
+        .star {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+            animation: twinkle 3s infinite alternate, moveStar 20s linear infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.8); }
+        }
+        @keyframes moveStar {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100vw, -50vh); }
         }
 
         /* Navigation */
@@ -117,31 +138,113 @@ il<!DOCTYPE html>
         .nav-mobile.open { display: flex; }
         .nav-mobile a { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); text-decoration: none; }
 
-        /* Hero */
+        /* Hero avec slider ET photo bornée */
         #hero {
-            position: relative; min-height: 100vh; display: grid; place-items: center;
+            position: relative; min-height: 100vh; display: flex;
+            align-items: center; justify-content: center;
             padding: 7rem 5% 5rem; overflow: hidden;
         }
-        .hero-bg {
+        .hero-slider {
             position: absolute; inset: 0; z-index: 1;
-            background: radial-gradient(ellipse 70% 80% at 50% 35%, rgba(201,168,76,.1) 0%, transparent 70%),
-                        radial-gradient(ellipse 80% 40% at 50% 100%, rgba(139,26,26,.15) 0%, transparent 60%),
-                        var(--bg-deep);
         }
-        .hero-content { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
-        .hero-badge { font-family: 'Cinzel',serif; font-size:.68rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(201,168,76,.4); padding:.5rem 1.6rem; border-radius:3px; background:rgba(201,168,76,.04); animation:fadeInDown .8s ease both; }
-        .hero-photo-wrap { position:relative; display:inline-block; animation:fadeInScale 1s ease .2s both; }
-        .ring { position: absolute; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-        .ring-1 { width: calc(100% + 16px); height: calc(100% + 16px); border: 1px solid rgba(201,168,76,.5); animation: rotate 20s linear infinite; }
-        .ring-2 { width: calc(100% + 38px); height: calc(100% + 38px); border: 1px dashed rgba(201,168,76,.22); animation: rotate 35s linear infinite reverse; }
-        .ring-3 { width: calc(100% + 62px); height: calc(100% + 62px); border: 1px dotted rgba(201,168,76,.1); animation: rotate 55s linear infinite; }
-        @keyframes rotate { to { transform: translate(-50%,-50%) rotate(360deg); } }
-        .hero-photo { width: 230px; height: 230px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--gold); box-shadow: 0 0 50px rgba(201,168,76,.3); display: block; position: relative; z-index: 1; }
-        .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2.4rem, 5.5vw, 4.5rem); font-weight: 900; line-height: 1.08; background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInUp .8s ease .4s both; }
-        .hero-subtitle { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .22em; text-transform: uppercase; color: var(--text-muted); animation: fadeInUp .8s ease .6s both; }
-        .hero-decree { font-size: .72rem; color: var(--gold); letter-spacing: .15em; border: 1px solid rgba(201,168,76,.3); padding: .45rem 1.4rem; background: rgba(201,168,76,.05); animation: fadeInUp .8s ease .7s both; }
-        .hero-desc { max-width: 600px; font-style: italic; color: rgba(245,236,215,.85); animation: fadeInUp .8s ease .8s both; line-height: 1.9; }
-        .hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; animation: fadeInUp .8s ease 1s both; }
+        .hero-slider .slide {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            opacity: 0; animation: sliderFade 36s infinite;
+        }
+        .hero-slider .slide:nth-child(1) { background-image: url('to1.jpg'); animation-delay: 0s; }
+        .hero-slider .slide:nth-child(2) { background-image: url('to2.jpg'); animation-delay: 6s; }
+        .hero-slider .slide:nth-child(3) { background-image: url('to3.jpg'); animation-delay: 12s; }
+        .hero-slider .slide:nth-child(4) { background-image: url('phg.jpg'); animation-delay: 18s; }
+        .hero-slider .slide:nth-child(5) { background-image: url('phh.jpg'); animation-delay: 24s; }
+        .hero-slider .slide:nth-child(6) { background-image: url('phi.jpg'); animation-delay: 30s; }
+
+        @keyframes sliderFade {
+            0% { opacity: 0; }
+            8% { opacity: 1; }
+            16% { opacity: 1; }
+            24% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+        .hero-overlay {
+            position: absolute; inset: 0; z-index: 2;
+            background: rgba(8,6,4, 0.65);
+        }
+        .hero-content {
+            position: relative; z-index: 5;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .hero-left {
+            text-align: center;
+        }
+        .hero-left .hero-badge {
+            font-family: 'Cinzel',serif; font-size:.68rem; letter-spacing:.28em; text-transform:uppercase;
+            color:var(--gold); border:1px solid rgba(201,168,76,.4); padding:.5rem 1.6rem; border-radius:3px;
+            background:rgba(201,168,76,.04); display:inline-block; margin-bottom: 1.5rem;
+            animation: fadeInDown .8s ease both;
+        }
+        .hero-title {
+            font-family: 'Cinzel Decorative', serif; font-size: clamp(2.4rem, 5.5vw, 4.5rem); font-weight: 900;
+            line-height: 1.08; background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: fadeInUp .8s ease .4s both;
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .22em; text-transform: uppercase;
+            color: var(--text-muted); animation: fadeInUp .8s ease .6s both; margin-bottom: 0.8rem;
+        }
+        .hero-decree {
+            font-size: .72rem; color: var(--gold); letter-spacing: .15em;
+            border: 1px solid rgba(201,168,76,.3); padding: .45rem 1.4rem;
+            background: rgba(201,168,76,.05); display: inline-block; margin-bottom: 1rem;
+            animation: fadeInUp .8s ease .7s both;
+        }
+        .hero-desc {
+            max-width: 500px; margin: 0 auto 1.5rem;
+            font-style: italic; color: rgba(245,236,215,.85);
+            animation: fadeInUp .8s ease .8s both; line-height: 1.9;
+        }
+        .hero-right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-photo-frame {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 50px rgba(201,168,76,.3), 0 20px 60px rgba(0,0,0,.7);
+            animation: fadeInScale 1s ease .2s both;
+        }
+        .hero-photo-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+        }
+        .hero-photo-frame .photo-watermark {
+            position: absolute; bottom: 10px; left: 10px;
+            font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+            color: rgba(240, 208, 128, 1); background: rgba(0, 0, 0, 0.75); padding: 0.25rem 0.7rem;
+            border-radius: 4px; text-shadow: 0 1px 3px black; pointer-events: none; z-index: 10;
+            border: 1px solid rgba(240, 208, 128, 0.6);
+        }
+        .hero-cta {
+            display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
+            animation: fadeInUp .8s ease 1s both;
+        }
         .btn-gold { font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; padding: .92rem 2.5rem; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--bg-deep); border: none; border-radius: 3px; cursor: pointer; text-decoration: none; transition: all .3s; box-shadow: 0 4px 24px rgba(201,168,76,.3); display: inline-block; }
         .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(201,168,76,.5); }
         .btn-outline { font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; padding: .9rem 2.5rem; background: transparent; color: var(--gold); border: 1px solid rgba(201,168,76,.5); border-radius: 3px; cursor: pointer; text-decoration: none; transition: all .3s; }
@@ -215,16 +318,6 @@ il<!DOCTYPE html>
         footer { background: #050402; border-top: 1px solid rgba(201,168,76,.15); padding: 2.5rem 5%; text-align: center; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
         .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
         .footer-nav a { font-family: 'Cinzel', serif; font-size: .62rem; color: var(--text-muted); text-transform: uppercase; text-decoration: none; }
-        .footer-novasoir { display: flex; align-items: center; gap: .8rem; }
-        .btn-novasoir {
-            display: inline-flex; align-items: center; gap: .4rem;
-            background: var(--whatsapp); color: #fff;
-            font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .1em;
-            padding: .3rem .8rem; border-radius: 20px; text-decoration: none;
-            transition: all .3s; font-weight: 600;
-        }
-        .btn-novasoir:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,211,102,.3); }
-        .btn-novasoir svg { width: 14px; height: 14px; }
 
         /* WhatsApp icon */
         .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 300; width: 60px; height: 60px; background: var(--whatsapp); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(37,211,102,0.5); text-decoration: none; transition: transform .3s; }
@@ -243,10 +336,14 @@ il<!DOCTYPE html>
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-right { order: -1; }
+            .hero-photo-frame { max-width: 300px; margin: 0 auto; }
             .about-grid { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
             .gallery-grid .photo-item:first-child { grid-row: auto; }
-            .photo-watermark { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
+            .event-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+            .event-grid .event-media { order: -1 !important; }
         }
     </style>
 </head>
@@ -280,28 +377,40 @@ il<!DOCTYPE html>
         <a href="contact.html">Contact</a>
     </div>
 
-    <!-- Hero -->
+    <!-- Hero avec slider + photo bornée + étoiles -->
     <section id="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-slider">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="rainbow-stars" id="rainbowStars"></div>
         <div class="hero-content">
-            <span class="hero-badge">✦ Majesté Spirituelle du Bénin ✦</span>
-            <div class="hero-photo-wrap">
-                <div class="ring ring-1"></div><div class="ring ring-2"></div><div class="ring ring-3"></div>
-                <img src="to1.jpg" alt="Majesté Togbé Yédy" class="hero-photo" />
-                <div class="photo-watermark">+229 01 97 10 10 08</div>
+            <div class="hero-left">
+                <span class="hero-badge">✦ Majesté Spirituelle du Bénin ✦</span>
+                <h1 class="hero-title">Togbé Yédy</h1>
+                <p class="hero-subtitle">Patrice Hounsa — Hounnongan, Dignitaire du Culte Vodun</p>
+                <p class="hero-decree">📜 Nommé par Décret Présidentiel N°2023-467 · Patrice Talon</p>
+                <p class="hero-desc">
+                    <strong>Acteur des grands événements au Bénin</strong><br />
+                    <strong>Ambassadeur de la paix</strong><br />
+                    Initiateur du <strong>Grand Pèlerinage Agbandotho de Vodun Mami Dan</strong><br />
+                    Gardien des traditions ancestrales, maître du couvent national Mami Dan.
+                </p>
+                <div class="hero-cta">
+                    <a href="decouverte.html" class="btn-gold">✨ Découvrir Sa Majesté</a>
+                    <a href="contact.html" class="btn-outline">Me Contacter</a>
+                </div>
             </div>
-            <h1 class="hero-title">Togbé Yédy</h1>
-            <p class="hero-subtitle">Patrice Hounsa — Hounnongan, Dignitaire du Culte Vodun</p>
-            <p class="hero-decree">📜 Nommé par Décret Présidentiel N°2023-467 · Patrice Talon</p>
-            <p class="hero-desc">
-                <strong>Acteur des grands événements au Bénin</strong><br />
-                <strong>Ambassadeur de la paix</strong><br />
-                Initiateur du <strong>Grand Pèlerinage Agbandotho de Vodun Mami Dan</strong><br />
-                Gardien des traditions ancestrales, maître du couvent national Mami Dan.
-            </p>
-            <div class="hero-cta">
-                <a href="decouverte.html" class="btn-gold">✨ Découvrir Sa Majesté</a>
-                <a href="contact.html" class="btn-outline">Me Contacter</a>
+            <div class="hero-right">
+                <div class="hero-photo-frame">
+                    <img src="to1.jpg" alt="Majesté Togbé Yédy" />
+                    <div class="photo-watermark">+229 01 97 10 10 08</div>
+                </div>
             </div>
         </div>
     </section>
@@ -345,226 +454,98 @@ il<!DOCTYPE html>
         </div>
     </section>
 
-<!-- ══════════════════ ACTUALITÉ 14 MAI 2026 ══════════════════ -->
-<section style="background: var(--bg-deep); border-top: 1px solid rgba(201,168,76,.25); border-bottom: 1px solid rgba(201,168,76,.25);">
-    <div class="section-inner" style="padding: 4rem 5%;">
-        <span class="section-label reveal">📰 Actualité</span>
-        <h2 class="section-title reveal">Distinction du Professeur Mahougnon KAKPO</h2>
-        <div class="section-divider reveal">
-            <div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line rev"></div>
-        </div>
-        <div class="reveal" style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <p style="font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .15em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.5rem;">
-                🗓️ Jeudi 14 mai 2026 — Grand-Popo, Bénin
-            </p>
-            <p style="font-size: 1.1rem; line-height: 2; color: rgba(245,236,215,.85); font-style: italic; margin-bottom: 1.5rem;">
-                <strong>Le Professeur Mahougnon KAKPO</strong> a été honoré par <strong>Sa Majesté Togbé Yédy</strong> 
-                à travers la remise d'un tableau d'honneur en reconnaissance de son engagement pour la promotion 
-                et le rayonnement de la  culture Vodun au Bénin.
-            </p>
-            <!-- Photos de l'événement -->
-            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
-                <div style="position: relative; max-width: 300px; width: 100%;">
-                    <img src="eva.jpg" alt="Togbé Yédy honorant le Professeur Mahougnon KAKPO" style="width:100%; border-radius:6px; border:1px solid rgba(201,168,76,.3); aspect-ratio: 3/4; object-fit: cover;" />
-                    <div class="photo-watermark">+229 01 97 10 10 08</div>
+    <!-- Actualité -->
+    <section style="background: var(--bg-deep); border-top: 1px solid rgba(201,168,76,.25); border-bottom: 1px solid rgba(201,168,76,.25);">
+        <div class="section-inner" style="padding: 4rem 5%;">
+            <span class="section-label reveal">📰 Actualité</span>
+            <h2 class="section-title reveal">Distinction du Professeur Mahougnon KAKPO</h2>
+            <div class="section-divider reveal"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line rev"></div></div>
+            <div class="reveal" style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .15em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.5rem;">🗓️ Jeudi 14 mai 2026 — Grand-Popo, Bénin</p>
+                <p style="font-size: 1.1rem; line-height: 2; color: rgba(245,236,215,.85); font-style: italic; margin-bottom: 1.5rem;"><strong>Le Professeur Mahougnon KAKPO</strong> a été honoré par <strong>Sa Majesté Togbé Yédy</strong> à travers la remise d'un tableau d'honneur en reconnaissance de son engagement pour la promotion et le rayonnement de la culture Vodun au Bénin.</p>
+                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <div style="position: relative; max-width: 300px; width: 100%;"><img src="eva.jpg" alt="Togbé Yédy honorant le Professeur Mahougnon KAKPO" style="width:100%; border-radius:6px; border:1px solid rgba(201,168,76,.3); aspect-ratio: 3/4; object-fit: cover;" /><div class="photo-watermark">+229 01 97 10 10 08</div></div>
+                    <div style="position: relative; max-width: 300px; width: 100%;"><img src="evb.jpg" alt="Remise du tableau d'honneur à Grand-Popo" style="width:100%; border-radius:6px; border:1px solid rgba(201,168,76,.3); aspect-ratio: 3/4; object-fit: cover;" /><div class="photo-watermark">+229 01 97 10 10 08</div></div>
                 </div>
-                <div style="position: relative; max-width: 300px; width: 100%;">
-                    <img src="evb.jpg" alt="Remise du tableau d'honneur à Grand-Popo" style="width:100%; border-radius:6px; border:1px solid rgba(201,168,76,.3); aspect-ratio: 3/4; object-fit: cover;" />
-                    <div class="photo-watermark">+229 01 97 10 10 08</div>
-                </div>
-            </div>
-            <p style="color: rgba(245,236,215,.75); line-height: 1.9; margin-bottom: 1.5rem;">
-                Membre du Comité des rites vodun du Bénin et Président communal CNCVB-RACINE d'Athiémé, 
-                Togbé Yédy a salué les nombreuses actions menées par le Professeur KAKPO, 
-                2ᵉ vice-président de l'Assemblée nationale, en faveur de la valorisation des traditions ancestrales 
-                et du repositionnement du Vodun sur la scène nationale et internationale.
-            </p>
-            <div class="about-quote" style="max-width: 700px; margin: 0 auto;">
-                « Il est essentiel de préserver et transmettre les richesses culturelles et spirituelles 
-                du Bénin aux générations futures. »<br/><br/>
-                — Majesté Togbé Yédy
+                <p style="color: rgba(245,236,215,.75); line-height: 1.9; margin-bottom: 1.5rem;">Membre du Comité des rites vodun du Bénin et Président communal CNCVB-RACINE d'Athiémé, Togbé Yédy a salué les nombreuses actions menées par le Professeur KAKPO, 2ᵉ vice-président de l'Assemblée nationale, en faveur de la valorisation des traditions ancestrales et du repositionnement du Vodun sur la scène nationale et internationale.</p>
+                <div class="about-quote" style="max-width: 700px; margin: 0 auto;">« Il est essentiel de préserver et transmettre les richesses culturelles et spirituelles du Bénin aux générations futures. »<br/><br/>— Majesté Togbé Yédy</div>
             </div>
         </div>
-    </div>
-</section>
-<!-- ══════════════════ GRANDS ÉVÉNEMENTS ══════════════════ -->
-<section style="background: var(--bg-dark); border-top: 1px solid rgba(201,168,76,.25); border-bottom: 1px solid rgba(201,168,76,.25);">
-    <div class="section-inner" style="padding: 4rem 5%;">
-        <span class="section-label reveal">🏛️ Temps Forts</span>
-        <h2 class="section-title reveal">Grands Événements avec Sa Majesté</h2>
-        <div class="section-divider reveal">
-            <div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line rev"></div>
-        </div>
+    </section>
 
-        <!-- Événement 1 : Décoration du Président Patrice Talon -->
-        <div class="event-block reveal" style="margin-bottom: 5rem;">
-            <div class="event-grid">
-                <div class="event-media">
-                    <div class="event-photos">
-                        <div class="event-photo-item">
-                            <img src="talon1.jpg" alt="Togbé Yédy décorant le Président Patrice Talon" />
-                            <div class="photo-watermark">+229 01 97 10 10 08</div>
+    <!-- Grands Événements -->
+    <section style="background: var(--bg-dark); border-top: 1px solid rgba(201,168,76,.25); border-bottom: 1px solid rgba(201,168,76,.25);">
+        <div class="section-inner" style="padding: 4rem 5%;">
+            <span class="section-label reveal">🏛️ Temps Forts</span>
+            <h2 class="section-title reveal">Grands Événements avec Sa Majesté</h2>
+            <div class="section-divider reveal"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line rev"></div></div>
+
+            <!-- Événement 1 : Décoration du Président Patrice Talon -->
+            <div class="event-block reveal" style="margin-bottom: 5rem;">
+                <div class="event-grid">
+                    <div class="event-media">
+                        <div class="event-photos">
+                            <div class="event-photo-item"><img src="talon1.jpg" alt="Togbé Yédy décorant le Président Patrice Talon" /><div class="photo-watermark">+229 01 97 10 10 08</div></div>
+                            <div class="event-photo-item"><img src="talon2.jpg" alt="Togbé Yédy et le couple présidentiel" /><div class="photo-watermark">+229 01 97 10 10 08</div></div>
                         </div>
-                        <div class="event-photo-item">
-                            <img src="talon2.jpg" alt="Togbé Yédy et le couple présidentiel" />
-                            <div class="photo-watermark">+229 01 97 10 10 08</div>
+                        <div class="event-video">
+                            <video controls><source src="talon.mp4" type="video/mp4">Votre navigateur ne supporte pas la lecture de vidéo.</video>
+                            <p class="video-caption">🎬 Vidéo de la cérémonie de décoration</p>
                         </div>
                     </div>
-                    <div class="event-video">
-                        <video controls>
-                            <source src="talon.mp4" type="video/mp4">
-                            Votre navigateur ne supporte pas la lecture de vidéo.
-                        </video>
-                        <p class="video-caption">🎬 Vidéo de la cérémonie de décoration</p>
+                    <div class="event-text">
+                        <h3>🎖️ Première décoration d'un Chef de l'État par un dignitaire Vodun</h3>
+                        <p>Sa Majesté Togbé Yédy est entrée dans l'histoire comme la toute première personnalité à avoir décoré <strong>Son Excellence Patrice Talon</strong>, Président de la République du Bénin, ainsi que son épouse. Cet acte solennel, chargé de symboles, consacre la reconnaissance du pouvoir traditionnel envers le premier magistrat de la nation et scelle l'alliance entre l'État et les cultes Vodun.</p>
                     </div>
                 </div>
-                <div class="event-text">
-                    <h3>🎖️ Première décoration d'un Chef de l'État par un dignitaire Vodun</h3>
-                    <p>
-                        Sa Majesté Togbé Yédy est entrée dans l'histoire comme la toute première personnalité 
-                        à avoir décoré <strong>Son Excellence Patrice Talon</strong>, Président de la République du Bénin, 
-                        ainsi que son épouse. Cet acte solennel, chargé de symboles, consacre la reconnaissance 
-                        du pouvoir traditionnel envers le premier magistrat de la nation et scelle l'alliance 
-                        entre l'État et les cultes Vodun.
-                    </p>
+            </div>
+
+            <!-- Événement 2 : Vodun Days 2024 avec le Chef de l'État -->
+            <div class="event-block reveal" style="margin-bottom: 5rem;">
+                <div class="event-grid reverse">
+                    <div class="event-text">
+                        <h3>🏛️ Le Chef de l'État aux Vodun Days 2024</h3>
+                        <p>Lors des <strong>Vodun Days 2024</strong>, le Président Patrice Talon, accompagné des membres du gouvernement, a pris part aux cérémonies dans la <strong>salle des Vodun MAMI</strong>, sous la conduite de Sa Majesté Togbé Yédy, Maître du Couvent National Mami Dan. Un moment historique de communion entre le sommet de l'État et la spiritualité Vodun.</p>
+                    </div>
+                    <div class="event-media">
+                        <div class="event-video">
+                            <video controls><source src="vodun.mp4" type="video/mp4">Votre navigateur ne supporte pas la lecture de vidéo.</video>
+                            <p class="video-caption">🎬 Vidéo des Vodun Days 2024 — Salle MAMI</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Événement 2 : Vodun Days 2024 avec le Chef de l'État -->
-        <div class="event-block reveal" style="margin-bottom: 5rem;">
-            <div class="event-grid reverse">
-                <div class="event-text">
-                    <h3>🏛️ Le Chef de l'État aux Vodun Days 2024</h3>
-                    <p>
-                        Lors des <strong>Vodun Days 2024</strong>, le Président Patrice Talon, accompagné des membres 
-                        du gouvernement, a pris part aux cérémonies dans la <strong>salle des Vodun MAMI</strong>, 
-                        sous la conduite de Sa Majesté Togbé Yédy, Maître du Couvent National Mami Dan. 
-                        Un moment historique de communion entre le sommet de l'État et la spiritualité Vodun.
-                    </p>
-                </div>
-                <div class="event-media">
-                    <div class="event-video">
-                        <video controls>
-                            <source src="vodun.mp4" type="video/mp4">
-                            Votre navigateur ne supporte pas la lecture de vidéo.
-                        </video>
-                        <p class="video-caption">🎬 Vidéo des Vodun Days 2024 — Salle MAMI</p>
+            <!-- Événement 3 : Festival des Masques de Porto-Novo 2024 -->
+            <div class="event-block reveal" style="margin-bottom: 2rem;">
+                <div class="event-grid">
+                    <div class="event-media">
+                        <div class="event-video">
+                            <video controls><source src="masque.mp4" type="video/mp4">Votre navigateur ne supporte pas la lecture de vidéo.</video>
+                            <p class="video-caption">🎬 Vidéo du Festival des Masques — Porto-Novo 2024</p>
+                        </div>
+                    </div>
+                    <div class="event-text">
+                        <h3>🎭 Festival des Masques de Porto-Novo 2024</h3>
+                        <p>Sa Majesté Togbé Yédy a honoré de sa présence le <strong>Festival des Masques de Porto-Novo 2024</strong>, célébration emblématique des masques sacrés du Bénin. Aux côtés des communautés locales, il a apporté son expertise spirituelle et sa bénédiction, réaffirmant son rôle d'<strong>Acteur des grands événements</strong> et d'<strong>Ambassadeur de la paix</strong>.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Événement 3 : Festival des Masques de Porto-Novo 2024 -->
-        <div class="event-block reveal" style="margin-bottom: 2rem;">
-            <div class="event-grid">
-                <div class="event-media">
-                    <div class="event-video">
-                        <video controls>
-                            <source src="masque.mp4" type="video/mp4">
-                            Votre navigateur ne supporte pas la lecture de vidéo.
-                        </video>
-                        <p class="video-caption">🎬 Vidéo du Festival des Masques — Porto-Novo 2024</p>
-                    </div>
-                </div>
-                <div class="event-text">
-                    <h3>🎭 Festival des Masques de Porto-Novo 2024</h3>
-                    <p>
-                        Sa Majesté Togbé Yédy a honoré de sa présence le <strong>Festival des Masques de Porto-Novo 2024</strong>, 
-                        célébration emblématique des masques sacrés du Bénin. Aux côtés des communautés locales, 
-                        il a apporté son expertise spirituelle et sa bénédiction, réaffirmant son rôle 
-                        d'<strong>Acteur des grands événements</strong> et d'<strong>Ambassadeur de la paix</strong>.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    /* Styles pour la section événements */
-    .event-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
-        align-items: center;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-    .event-media {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    .event-photos {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-    .event-photo-item {
-        position: relative;
-        border-radius: 6px;
-        overflow: hidden;
-        border: 1px solid rgba(201,168,76,.3);
-        aspect-ratio: 3/4;
-    }
-    .event-photo-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .event-video video {
-        width: 100%;
-        border-radius: 6px;
-        border: 1px solid rgba(201,168,76,.3);
-        background: #000;
-    }
-    .video-caption {
-        font-family: 'Cinzel', serif;
-        font-size: 0.6rem;
-        letter-spacing: 0.1em;
-        color: var(--text-muted);
-        margin-top: 0.5rem;
-        text-align: center;
-    }
-    .event-text h3 {
-        font-family: 'Cinzel', serif;
-        color: var(--gold-light);
-        font-size: 1.2rem;
-        margin-bottom: 1.2rem;
-    }
-    .event-text p {
-        color: rgba(245,236,215,.85);
-        line-height: 1.9;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .event-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-        }
-        /* Sur mobile, les médias passent toujours au-dessus */
-        .event-grid .event-media {
-            order: -1 !important;
-        }
-        .event-grid.reverse .event-media {
-            order: -1 !important; /* même pour la version reverse */
-        }
-        .event-photos {
-            grid-template-columns: 1fr 1fr; /* garder 2 colonnes pour les photos */
-        }
-        .event-text h3 {
-            font-size: 1rem;
-        }
-        .video-caption {
-            font-size: 0.55rem;
-        }
-    }
+    <style>
+        .event-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; max-width: 1000px; margin: 0 auto; }
+        .event-media { display: flex; flex-direction: column; gap: 1.5rem; }
+        .event-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .event-photo-item { position: relative; border-radius: 6px; overflow: hidden; border: 1px solid rgba(201,168,76,.3); aspect-ratio: 3/4; }
+        .event-photo-item img { width: 100%; height: 100%; object-fit: cover; }
+        .event-video video { width: 100%; border-radius: 6px; border: 1px solid rgba(201,168,76,.3); background: #000; }
+        .video-caption { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.5rem; text-align: center; }
+        .event-text h3 { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 1.2rem; margin-bottom: 1.2rem; }
+        .event-text p { color: rgba(245,236,215,.85); line-height: 1.9; margin-bottom: 1.5rem; }
     </style>
 
-    
     <!-- Festivals -->
     <section id="festivals">
         <div class="section-inner">
@@ -628,72 +609,38 @@ il<!DOCTYPE html>
         </div>
     </section>
 
-
-<!-- ══════════════════ HÉRITAGE & TRANSMISSION ══════════════════ -->
-<section style="background: linear-gradient(135deg, #0e0b06 0%, #1a130a 50%, #0e0b06 100%); border-top: 1px solid rgba(201,168,76,.25); border-bottom: 1px solid rgba(201,168,76,.25);">
-    <div class="section-inner" style="padding: 4rem 5%;">
-        <span class="section-label reveal">🌍 Transmission</span>
-        <h2 class="section-title reveal">Notre Culture, Notre Fierté</h2>
-        <div class="section-divider reveal">
-            <div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line rev"></div>
-        </div>
-
-        <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1100px; margin: 0 auto;">
-            <!-- Colonne Vidéo -->
-            <div style="order: 1;">
-                <video controls style="width: 100%; border-radius: 6px; border: 1px solid rgba(201,168,76,.3); box-shadow: 0 15px 40px rgba(0,0,0,.5);">
-                    <source src="culture.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture de vidéo.
-                </video>
-                <p style="font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.8rem; text-align: center;">
-                    🎬 Regardez et partagez
-                </p>
-            </div>
-
-            <!-- Colonne Texte -->
-            <div style="order: 0;">
-                <p style="font-size: 1.1rem; line-height: 2; color: rgba(245,236,215,.9); margin-bottom: 1.5rem; font-style: italic;">
-                    « La future génération doit comprendre que notre culture n'est pas un retard, mais une richesse. »
-                </p>
-                <p style="color: rgba(245,236,215,.8); line-height: 1.9; margin-bottom: 1.5rem;">
-                    Un peuple qui oublie ses traditions perd son identité, mais un peuple qui protège sa culture construit un avenir solide pour ses enfants. Nos langues, nos rites, nos danses, nos valeurs et nos ancêtres sont des trésors que nous devons transmettre avec fierté.
-                </p>
-                <p style="color: rgba(245,236,215,.8); line-height: 1.9; margin-bottom: 1.5rem;">
-                    La modernité ne doit pas effacer nos racines, elle doit les faire briller davantage. Valoriser notre culture aujourd'hui, c'est préparer une génération forte, consciente et respectée demain.
-                </p>
-
-                <!-- Hashtags -->
-                <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;">
-                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#CultureAfricaine</span>
-                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#FiertéAfricaine</span>
-                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#ValorisationCulturelle</span>
-                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Tradition</span>
-                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Héritage</span>
-                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#JeunesseAfricaine</span>
-                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Afrique</span>
-                    <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#IdentitéCulturelle</span>
+    <!-- Héritage & Transmission -->
+    <section style="background: linear-gradient(135deg, #0e0b06 0%, #1a130a 50%, #0e0b06 100%); border-top: 1px solid rgba(201,168,76,.25); border-bottom: 1px solid rgba(201,168,76,.25);">
+        <div class="section-inner" style="padding: 4rem 5%;">
+            <span class="section-label reveal">🌍 Transmission</span>
+            <h2 class="section-title reveal">Notre Culture, Notre Fierté</h2>
+            <div class="section-divider reveal"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line rev"></div></div>
+            <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1100px; margin: 0 auto;">
+                <div style="order: 1;">
+                    <video controls style="width: 100%; border-radius: 6px; border: 1px solid rgba(201,168,76,.3); box-shadow: 0 15px 40px rgba(0,0,0,.5);">
+                        <source src="culture.mp4" type="video/mp4">Votre navigateur ne supporte pas la lecture de vidéo.
+                    </video>
+                    <p style="font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.8rem; text-align: center;">🎬 Regardez et partagez</p>
+                </div>
+                <div style="order: 0;">
+                    <p style="font-size: 1.1rem; line-height: 2; color: rgba(245,236,215,.9); margin-bottom: 1.5rem; font-style: italic;">« La future génération doit comprendre que notre culture n'est pas un retard, mais une richesse. »</p>
+                    <p style="color: rgba(245,236,215,.8); line-height: 1.9; margin-bottom: 1.5rem;">Un peuple qui oublie ses traditions perd son identité, mais un peuple qui protège sa culture construit un avenir solide pour ses enfants. Nos langues, nos rites, nos danses, nos valeurs et nos ancêtres sont des trésors que nous devons transmettre avec fierté.</p>
+                    <p style="color: rgba(245,236,215,.8); line-height: 1.9; margin-bottom: 1.5rem;">La modernité ne doit pas effacer nos racines, elle doit les faire briller davantage. Valoriser notre culture aujourd'hui, c'est préparer une génération forte, consciente et respectée demain.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;">
+                        <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#CultureAfricaine</span>
+                        <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#FiertéAfricaine</span>
+                        <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#ValorisationCulturelle</span>
+                        <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Tradition</span>
+                        <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Héritage</span>
+                        <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#JeunesseAfricaine</span>
+                        <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#Afrique</span>
+                        <span style="background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold-light);">#IdentitéCulturelle</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Responsive -->
-    <style>
-        @media (max-width: 768px) {
-            .section-inner .reveal {
-                grid-template-columns: 1fr !important;
-                gap: 2rem !important;
-            }
-            .section-inner .reveal > div:first-child {
-                order: -1 !important; /* La vidéo passe au-dessus sur mobile */
-            }
-        }
-    </style>
-</section>
-
-
-
-    
     <!-- Contact rapide -->
     <section id="contact" style="background: var(--bg-deep);">
         <div class="section-inner">
@@ -724,19 +671,19 @@ il<!DOCTYPE html>
 
     <!-- Footer -->
     <footer>
-    <div style="font-family:'Cinzel Decorative',serif; font-size:1.2rem; background:linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Togbé Yédy</div>
-    <p>Hounnongan · Dignitaire du Culte Vodun · Membre du Comité des Rites Vodun · Athiémè, Bénin</p>
-    <div class="footer-nav">
-        <a href="decouverte.html">Découverte</a>
-        <a href="vodun.html">Vodun</a>
-        <a href="festivals.html">Festivals</a>
-        <a href="guerison.html">Guérisons</a>
-        <a href="gouvernement.html">Gouvernement</a>
-        <a href="galerie.html">Galerie</a>
-        <a href="contact.html">Contact</a>
-    </div>
-    <p style="font-size:.72rem; opacity:.5;">© 2026 Majesté Togbé Yédy — Patrice Hounsa. Tous droits réservés.</p>
-</footer>
+        <div style="font-family:'Cinzel Decorative',serif; font-size:1.2rem; background:linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Togbé Yédy</div>
+        <p>Hounnongan · Dignitaire du Culte Vodun · Membre du Comité des Rites Vodun · Athiémè, Bénin</p>
+        <div class="footer-nav">
+            <a href="decouverte.html">Découverte</a>
+            <a href="vodun.html">Vodun</a>
+            <a href="festivals.html">Festivals</a>
+            <a href="guerison.html">Guérisons</a>
+            <a href="gouvernement.html">Gouvernement</a>
+            <a href="galerie.html">Galerie</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p style="font-size:.72rem; opacity:.5;">© 2026 Majesté Togbé Yédy — Patrice Hounsa. Tous droits réservés.</p>
+    </footer>
 
     <!-- WhatsApp Flottant -->
     <a href="https://wa.me/2290197101008?text=Bonjour%20Majesté%20Togbé%20Yédy%2C%20je%20vous%20contacte%20depuis%20votre%20site%20officiel." target="_blank" class="wa-float" aria-label="WhatsApp">
@@ -745,13 +692,11 @@ il<!DOCTYPE html>
     </a>
 
     <script>
-        // Supprimer arc-en-ciel
         window.addEventListener('load', () => setTimeout(() => {
             const el = document.getElementById('rainbowLoader');
             if(el) el.style.display = 'none';
         }, 1500));
 
-        // Particules
         (function() {
             const c = document.getElementById('particles');
             for(let i = 0; i < 35; i++) {
@@ -763,7 +708,24 @@ il<!DOCTYPE html>
             }
         })();
 
-        // Menu mobile
+        // Étoiles arc-en-ciel mobiles
+        (function() {
+            const container = document.getElementById('rainbowStars');
+            const colors = ['#FF0000','#FF7700','#FFFF00','#00FF00','#0077FF','#4B0082','#9400D3'];
+            for(let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                star.style.color = color;
+                star.style.backgroundColor = color;
+                container.appendChild(star);
+            }
+        })();
+
         const hamburger = document.getElementById('hamburger');
         const navMobile = document.getElementById('nav-mobile');
         hamburger.addEventListener('click', () => {
@@ -775,7 +737,6 @@ il<!DOCTYPE html>
             hamburger.classList.remove('active');
         }));
 
-        // Révélation au scroll
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -787,7 +748,6 @@ il<!DOCTYPE html>
         }, { threshold: 0.1 });
         reveals.forEach(el => observer.observe(el));
 
-        // Nav background
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').style.background = window.scrollY > 60 ? 'rgba(8,6,4,0.97)' : 'rgba(8,6,4,0.88)';
         });
