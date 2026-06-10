@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Galerie Photos — Majesté Togbé Yédy | Vodun Bénin</title>
-    <meta name="description" content="Galerie photo complète de Majesté Togbé Yédy (Patrice Hounsa) : 28 clichés exclusifs de cérémonies vodun, guérisons, festivals, Grand Pèlerinage Agbandotho." />
+    <meta name="description" content="Galerie photo complète de Majesté Togbé Yédy (Patrice Hounsa) : 28 clichés exclusifs de cérémonies vodun, guérisons, festivals, Grand Pèlerinage Agbandotho. Chaque photo est marquée +229 01 97 10 10 08." />
     <meta name="keywords" content="Togbé Yédy photos, galerie vodun, Patrice Hounsa images, Mami Dan cérémonie, Grand Pèlerinage Agbandotho, Vodun Bénin photos" />
     <meta name="author" content="Majesté Togbé Yédy" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -151,6 +151,15 @@
         }
         .gallery-item:hover .caption { opacity: 1; }
 
+        /* Watermark */
+        .photo-watermark {
+            position: absolute; bottom: 10px; left: 10px;
+            font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+            color: rgba(240, 208, 128, 1); background: rgba(0, 0, 0, 0.75); padding: 0.25rem 0.7rem;
+            border-radius: 4px; text-shadow: 0 1px 3px black; pointer-events: none; z-index: 10;
+            border: 1px solid rgba(240, 208, 128, 0.6); line-height: 1.4;
+        }
+
         /* Footer */
         footer { background: var(--noir); color: var(--blanc); padding: 3rem 5%; text-align: center; }
         footer .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
@@ -245,7 +254,6 @@
 
 <script>
     (function() {
-        // Menu mobile
         const hamburger = document.getElementById('hamburger');
         const navMobile = document.getElementById('nav-mobile');
         hamburger.addEventListener('click', () => {
@@ -257,11 +265,9 @@
             hamburger.classList.remove('open');
         }));
 
-        // Navbar scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
 
-        // Génération des 28 photos
         const container = document.getElementById('gallery-container');
         const photos = [
             { src: 'to1.jpg', caption: 'Majesté Togbé Yédy' },
@@ -299,6 +305,7 @@
             item.className = 'gallery-item';
             item.innerHTML = `
                 <img src="${photo.src}" alt="${photo.caption}" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback').style.display='flex';" />
+                <div class="photo-watermark">+229 01 97 10 10 08</div>
                 <div class="caption">${photo.caption}</div>
                 <div class="fallback" style="display:none; position:absolute; inset:0; background:var(--gris-clair); align-items:center; justify-content:center; color:var(--gris-fonce); font-size:0.75rem;">${photo.src}</div>
             `;
