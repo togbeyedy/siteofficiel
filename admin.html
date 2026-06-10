@@ -181,13 +181,40 @@
 
     const UTILISATEUR_ADMIN = "admintogbe";
     const MOTDEPASSE_ADMIN = "togbe2026!";
+    const CLE_SESSION = "togbeyedy_admin_connecte";
     let idEnCours = null;
+
+    // ---------- GESTION DE LA SESSION ----------
+    function estConnecte() {
+        return localStorage.getItem(CLE_SESSION) === "oui";
+    }
+
+    function connecter() {
+        localStorage.setItem(CLE_SESSION, "oui");
+    }
+
+    function seDeconnecter() {
+        localStorage.removeItem(CLE_SESSION);
+    }
+
+    // Au chargement, vérifier si une session existe
+    if (estConnecte()) {
+        // L'utilisateur est déjà connecté → afficher directement l'admin
+        document.getElementById('ecranConnexion').style.display = 'none';
+        document.getElementById('ecranAdmin').style.display = 'block';
+        chargerListe();
+    } else {
+        // Afficher l'écran de connexion
+        document.getElementById('ecranConnexion').style.display = 'flex';
+        document.getElementById('ecranAdmin').style.display = 'none';
+    }
 
     // Connexion
     window.connexion = () => {
         const u = document.getElementById('identifiant').value.trim();
         const p = document.getElementById('motdepasse').value;
         if (u === UTILISATEUR_ADMIN && p === MOTDEPASSE_ADMIN) {
+            connecter(); // Mémoriser la session
             document.getElementById('ecranConnexion').style.display = 'none';
             document.getElementById('ecranAdmin').style.display = 'block';
             chargerListe();
@@ -197,9 +224,15 @@
             setTimeout(() => err.style.display = 'none', 3000);
         }
     };
+
+    // Déconnexion
     window.deconnexion = () => {
+        seDeconnecter();
         document.getElementById('ecranAdmin').style.display = 'none';
         document.getElementById('ecranConnexion').style.display = 'flex';
+        // Effacer les champs de connexion
+        document.getElementById('identifiant').value = '';
+        document.getElementById('motdepasse').value = '';
     };
 
     // Réinitialiser le formulaire
