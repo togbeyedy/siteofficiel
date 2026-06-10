@@ -8,65 +8,233 @@
     <link rel="canonical" href="https://www.togbeyedy.com/article.html" />
     <meta property="og:title" content="Article — Majesté Togbé Yédy" />
     <meta property="og:image" content="https://www.togbeyedy.com/to1.jpg" />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+    <meta property="og:url" content="https://www.togbeyedy.com/article.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="fr_BJ" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Article — Majesté Togbé Yédy" />
+    <meta name="twitter:image" content="https://www.togbeyedy.com/to1.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
-        :root { --gold: #C9A84C; --gold-light: #F0D080; --gold-dark: #8B6914; --bg-deep: #080604; --bg-dark: #100D08; --bg-card: #181210; --cream: #F5ECD7; --text-muted: #9E8A6A; --nav-h: 60px; }
+        :root {
+            --blanc: #FFFFFF;
+            --noir: #111111;
+            --rouge: #CC0000;
+            --rouge-fonce: #990000;
+            --bleu: #1A3A5C;
+            --bleu-clair: #2C5F8A;
+            --gris-clair: #F5F5F5;
+            --gris: #E0E0E0;
+            --gris-fonce: #666666;
+            --whatsapp: #25D366;
+            --nav-h: 70px;
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg-deep); color: var(--cream); font-family: 'EB Garamond', serif; overflow-x: hidden; }
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: .85rem 5%; background: rgba(8,6,4,.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,168,76,.18); }
-        .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: .9rem; color: var(--gold); text-decoration: none; }
-        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
-        .nav-links a { font-family: 'Cinzel', serif; font-size: .67rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
-        .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-        .hamburger span { width: 26px; height: 2px; background: var(--gold); display: block; }
-        .nav-mobile { display: none; position: fixed; top: 60px; inset-inline: 0; bottom: 0; background: rgba(8,6,4,.98); z-index: 190; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--blanc);
+            color: var(--noir);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--noir); }
+
+        /* Navigation */
+        nav#navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            height: var(--nav-h); padding: 0 5%;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gris);
+            transition: box-shadow 0.3s;
+        }
+        nav#navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .nav-logo {
+            font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
+            color: var(--noir); text-decoration: none; letter-spacing: 0.05em;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-logo span { color: var(--rouge); }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+        .nav-links a {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--noir); text-decoration: none;
+            position: relative; padding-bottom: 4px; transition: color 0.3s;
+        }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--rouge); transform: scaleX(0); transition: transform 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--rouge); }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+        .nav-cta {
+            background: var(--rouge) !important; color: var(--blanc) !important;
+            padding: 0.55rem 1.4rem !important; border-radius: 4px !important;
+            transition: background 0.3s !important;
+        }
+        .nav-cta:hover { background: var(--rouge-fonce) !important; }
+        .nav-cta::after { display: none !important; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1001; }
+        .hamburger span { width: 26px; height: 2px; background: var(--noir); transition: 0.3s; display: block; border-radius: 2px; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .nav-mobile {
+            display: none; position: fixed; top: var(--nav-h); inset-inline: 0; bottom: 0;
+            background: rgba(255,255,255,0.99); z-index: 999; flex-direction: column;
+            align-items: center; justify-content: center; gap: 1.8rem;
+        }
         .nav-mobile.open { display: flex; }
-        .nav-mobile a { font-family: 'Cinzel', serif; color: var(--cream); text-decoration: none; }
-        .conteneur-article { max-width: 800px; margin: calc(var(--nav-h) + 2rem) auto 3rem; padding: 0 5%; }
-        .image-couverture { width: 100%; max-height: 500px; object-fit: contain; border-radius: 6px; margin-bottom: 1.5rem; background: #0a0805; }
-        .fil-ariane { font-size: .7rem; color: var(--text-muted); margin-bottom: 1rem; }
-        .fil-ariane a { color: var(--gold); text-decoration: none; }
-        .badge-categorie { display: inline-block; background: var(--gold); color: var(--bg-deep); padding: .2rem .8rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
-        .titre-article { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 4vw, 3rem); background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
-        .meta-article { display: flex; gap: 1.5rem; color: var(--text-muted); font-size: .8rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(201,168,76,.15); padding-bottom: 1rem; }
-        .contenu-article { font-size: 1.05rem; line-height: 1.9; color: rgba(245,236,215,.85); }
-        .contenu-article h2, .contenu-article h3 { color: var(--gold-light); margin: 1.5rem 0 .8rem; }
+        .nav-mobile a {
+            font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase; color: var(--noir); text-decoration: none;
+        }
+
+        /* Contenu de l'article */
+        .conteneur-article {
+            max-width: 800px; margin: calc(var(--nav-h) + 2rem) auto 3rem; padding: 0 5%;
+        }
+        .image-couverture {
+            width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px;
+            margin-bottom: 1.5rem; background: var(--gris-clair);
+            border: 1px solid var(--gris);
+        }
+        .fil-ariane { font-size: 0.7rem; color: var(--gris-fonce); margin-bottom: 1rem; }
+        .fil-ariane a { color: var(--rouge); text-decoration: none; font-weight: 600; }
+        .badge-categorie {
+            display: inline-block; background: var(--rouge); color: var(--blanc);
+            padding: 0.2rem 0.8rem; font-size: 0.65rem; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-bottom: 1rem; font-weight: 700;
+        }
+        .titre-article {
+            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--noir); margin-bottom: 1rem; line-height: 1.2;
+        }
+        .meta-article {
+            display: flex; gap: 1.5rem; color: var(--gris-fonce); font-size: 0.8rem;
+            margin-bottom: 2rem; border-bottom: 1px solid var(--gris); padding-bottom: 1rem;
+        }
+        .contenu-article {
+            font-size: 1.05rem; line-height: 1.9; color: var(--noir);
+        }
+        .contenu-article h2, .contenu-article h3 {
+            color: var(--noir); margin: 1.5rem 0 0.8rem; font-family: 'Playfair Display', serif;
+        }
+        .contenu-article h2 { font-size: 1.6rem; border-left: 4px solid var(--rouge); padding-left: 1rem; }
+        .contenu-article h3 { font-size: 1.3rem; }
         .video-article { margin: 1.5rem 0; }
-        .video-article iframe, .video-article video { width: 100%; border-radius: 6px; border: 1px solid rgba(201,168,76,.3); }
-        .barre-partage { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(201,168,76,.15); display: flex; gap: 1rem; flex-wrap: wrap; }
-        .bouton-partage { background: transparent; border: 1px solid rgba(201,168,76,.3); color: var(--gold); padding: .5rem 1.2rem; cursor: pointer; font-family: 'Cinzel', serif; font-size: .65rem; text-transform: uppercase; transition: .3s; text-decoration: none; }
-        .bouton-partage:hover { background: var(--gold); color: var(--bg-deep); }
+        .video-article iframe, .video-article video {
+            width: 100%; border-radius: 8px; border: 1px solid var(--gris);
+        }
+        .barre-partage {
+            margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--gris);
+            display: flex; gap: 1rem; flex-wrap: wrap;
+        }
+        .bouton-partage {
+            background: transparent; border: 2px solid var(--rouge); color: var(--rouge);
+            padding: 0.5rem 1.2rem; cursor: pointer; font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            transition: 0.3s; text-decoration: none; border-radius: 4px;
+        }
+        .bouton-partage:hover { background: var(--rouge); color: var(--blanc); }
         .articles-similaires { margin-top: 4rem; }
         .grille-similaires { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
-        .carte-similaire { background: var(--bg-card); border: 1px solid rgba(201,168,76,.12); cursor: pointer; padding: 1rem; transition: .3s; }
-        .carte-similaire:hover { border-color: var(--gold); }
-        .spinner { width: 40px; height: 40px; border: 3px solid rgba(201,168,76,.2); border-top-color: var(--gold); border-radius: 50%; animation: spin .8s linear infinite; margin: 2rem auto; }
+        .carte-similaire {
+            background: var(--blanc); border: 1px solid var(--gris); border-radius: 8px;
+            cursor: pointer; padding: 1rem; transition: 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .carte-similaire:hover { border-color: var(--rouge); transform: translateY(-3px); }
+        .spinner {
+            width: 40px; height: 40px; border: 3px solid var(--gris);
+            border-top-color: var(--rouge); border-radius: 50%; animation: spin 0.8s linear infinite;
+            margin: 2rem auto;
+        }
         @keyframes spin { to { transform: rotate(360deg); } }
-        footer { background: #050402; padding: 2rem 5%; text-align: center; margin-top: 3rem; color: var(--text-muted); }
+
+        footer { background: var(--noir); color: var(--blanc); padding: 3rem 5%; text-align: center; margin-top: 3rem; }
+        .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin: 1.2rem 0; }
+        .footer-nav a { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
+        .footer-nav a:hover { color: var(--rouge); }
+
+        /* WhatsApp */
+        .wa-float {
+            position: fixed; bottom: 25px; right: 25px; z-index: 9999;
+            width: 55px; height: 55px; background: var(--whatsapp); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none;
+        }
+        .wa-float svg { width: 30px; height: 30px; fill: white; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .conteneur-article { padding: 0 4%; }
+        }
     </style>
 </head>
 <body>
+    <!-- NAVIGATION -->
     <nav id="navbar">
-        <a href="index.html" class="nav-logo">✦ Togbé Yédy</a>
+        <a href="index.html" class="nav-logo">✦ Togbé <span>Yédy</span></a>
         <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li><li><a href="decouverte.html">Découverte</a></li><li><a href="vodun.html">Vodun</a></li><li><a href="festivals.html">Festivals</a></li><li><a href="guerison.html">Guérisons</a></li><li><a href="gouvernement.html">Gouvernement</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="contact.html">Contact</a></li><li><a href="actualites.html" class="active">Actualités</a></li>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="decouverte.html">Découverte</a></li>
+            <li><a href="vodun.html">Vodun</a></li>
+            <li><a href="festivals.html">Festivals</a></li>
+            <li><a href="guerison.html">Guérisons</a></li>
+            <li><a href="gouvernement.html">Gouvernement</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="actualites.html" class="active">Actualités</a></li>
+            <li><a href="contact.html" class="nav-cta">Contact</a></li>
         </ul>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </nav>
     <div class="nav-mobile" id="nav-mobile">
-        <a href="index.html">Accueil</a><a href="decouverte.html">Découverte</a><a href="vodun.html">Vodun</a><a href="festivals.html">Festivals</a><a href="guerison.html">Guérisons</a><a href="gouvernement.html">Gouvernement</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a><a href="actualites.html">Actualités</a>
+        <a href="index.html">Accueil</a>
+        <a href="decouverte.html">Découverte</a>
+        <a href="vodun.html">Vodun</a>
+        <a href="festivals.html">Festivals</a>
+        <a href="guerison.html">Guérisons</a>
+        <a href="gouvernement.html">Gouvernement</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="actualites.html">Actualités</a>
+        <a href="contact.html">Contact</a>
     </div>
 
+    <!-- CONTENU DE L'ARTICLE -->
     <div class="conteneur-article" id="conteneurArticle">
         <div style="text-align:center;" id="chargement"><div class="spinner"></div></div>
         <div id="contenuArticle" style="display:none;"></div>
     </div>
     <div class="articles-similaires" id="sectionSimilaires" style="display:none;">
-        <h3 style="color:var(--gold); margin-bottom:1rem;">Articles similaires</h3>
+        <h3 style="font-family:'Playfair Display',serif; color:var(--noir); margin-bottom:1rem; font-size:1.3rem;">Articles similaires</h3>
         <div class="grille-similaires" id="grilleSimilaires"></div>
     </div>
-    <footer>© 2026 Majesté Togbé Yédy — Patrice Hounsa</footer>
+
+    <!-- FOOTER -->
+    <footer>
+        <div style="font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700;">Togbé <span style="color:var(--rouge);">Yédy</span></div>
+        <p style="opacity:0.7;">Hounnongan · Dignitaire du Culte Vodun · Membre du Comité des Rites Vodun</p>
+        <div class="footer-nav">
+            <a href="index.html">Accueil</a>
+            <a href="decouverte.html">Découverte</a>
+            <a href="vodun.html">Vodun</a>
+            <a href="festivals.html">Festivals</a>
+            <a href="guerison.html">Guérisons</a>
+            <a href="gouvernement.html">Gouvernement</a>
+            <a href="galerie.html">Galerie</a>
+            <a href="actualites.html">Actualités</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p style="font-size:0.7rem; opacity:0.5;">© 2026 Majesté Togbé Yédy — Patrice Hounsa. Tous droits réservés.</p>
+    </footer>
+
+    <!-- WHATSAPP FLOTTANT -->
+    <a href="https://wa.me/2290197101008?text=Bonjour%20Majesté%20Togbé%20Yédy%2C%20je%20vous%20contacte%20depuis%20votre%20site%20officiel." target="_blank" class="wa-float" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -94,7 +262,6 @@
 
         function integrerVideo(url) {
             if (!url) return '';
-            // Détection simple YouTube ou lien direct mp4
             if (url.includes('youtube.com/watch')) {
                 const videoId = new URL(url).searchParams.get('v');
                 if (videoId) return `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
@@ -104,8 +271,7 @@
             } else if (url.endsWith('.mp4')) {
                 return `<video controls><source src="${url}" type="video/mp4">Votre navigateur ne supporte pas la vidéo.</video>`;
             }
-            // Sinon, lien brut
-            return `<a href="${url}" target="_blank">🎬 Voir la vidéo</a>`;
+            return `<a href="${url}" target="_blank" style="color:var(--rouge);">🎬 Voir la vidéo</a>`;
         }
 
         async function chargerArticle() {
@@ -117,6 +283,12 @@
                 }
                 const a = docSnap.data();
                 document.title = a.titre + ' — Majesté Togbé Yédy';
+                document.querySelector('meta[property="og:title"]').setAttribute('content', a.titre);
+                document.querySelector('meta[name="twitter:title"]').setAttribute('content', a.titre);
+                if (a.imageUrl) {
+                    document.querySelector('meta[property="og:image"]').setAttribute('content', a.imageUrl);
+                    document.querySelector('meta[name="twitter:image"]').setAttribute('content', a.imageUrl);
+                }
                 let html = '';
                 if (a.imageUrl) {
                     html += `<img class="image-couverture" src="${a.imageUrl}" alt="${a.titre}">`;
@@ -142,7 +314,7 @@
                 document.getElementById('contenuArticle').style.display = 'block';
                 chargerSimilaires(a.categorie, id);
             } catch (e) {
-                document.getElementById('chargement').innerHTML = '<p>Erreur de chargement.</p>';
+                document.getElementById('chargement').innerHTML = '<p style="color:var(--rouge);">Erreur de chargement.</p>';
             }
         }
 
@@ -161,8 +333,8 @@
             document.getElementById('sectionSimilaires').style.display = 'block';
             document.getElementById('grilleSimilaires').innerHTML = articles.map(a => `
                 <div class="carte-similaire" onclick="location.href='article.html?id=${a.id}'">
-                    <strong style="color:var(--gold-light);">${a.titre}</strong>
-                    <p style="font-size:.8rem; color:var(--text-muted);">${formaterDate(a.date)}</p>
+                    <strong style="color:var(--noir);">${a.titre}</strong>
+                    <p style="font-size:0.8rem; color:var(--gris-fonce);">${formaterDate(a.date)}</p>
                 </div>
             `).join('');
         }
@@ -171,10 +343,18 @@
     </script>
 
     <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
         const hamburger = document.getElementById('hamburger');
         const navMobile = document.getElementById('nav-mobile');
-        hamburger.addEventListener('click', () => { navMobile.classList.toggle('open'); hamburger.classList.toggle('active'); });
-        document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => { navMobile.classList.remove('open'); hamburger.classList.remove('active'); }));
+        hamburger.addEventListener('click', () => {
+            navMobile.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => {
+            navMobile.classList.remove('open');
+            hamburger.classList.remove('open');
+        }));
     </script>
 </body>
 </html>
