@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — Togbé Yédy</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --gold: #C9A84C; --gold-light: #F0D080; --gold-dark: #8B6914;
+            --bg-deep: #080604; --bg-dark: #100D08; --bg-card: #181210;
+            --cream: #F5ECD7; --text-muted: #9E8A6A;
+            --danger: #b91c1c; --success: #1a7a3c;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg-deep); color: var(--cream); font-family: 'EB Garamond', serif; }
+        #loginScreen {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: var(--bg-dark);
+        }
+        .login-box {
+            background: var(--bg-card); width: 100%; max-width: 400px;
+            padding: 2.5rem; border: 1px solid rgba(201,168,76,.25);
+        }
+        .login-box h1 { font-family: 'Cinzel Decorative', serif; color: var(--gold); text-align: center; margin-bottom: 2rem; }
+        .login-field { margin-bottom: 1rem; }
+        .login-field label { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); }
+        .login-field input { width: 100%; padding: .7rem; background: rgba(255,255,255,.05); border: 1px solid rgba(201,168,76,.2); color: var(--cream); outline: none; }
+        .login-btn { width: 100%; padding: .8rem; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-deep); border: none; font-family: 'Cinzel', serif; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+        .login-error { color: var(--danger); text-align: center; margin-top: .5rem; display: none; }
+        #adminScreen { display: none; padding: 1rem; }
+        .admin-top { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg-card); border-bottom: 1px solid rgba(201,168,76,.2); }
+        .admin-body { display: grid; grid-template-columns: 1fr 350px; gap: 1.5rem; max-width: 1200px; margin: 1.5rem auto; }
+        .card { background: var(--bg-card); border: 1px solid rgba(201,168,76,.12); padding: 1.5rem; margin-bottom: 1.5rem; }
+        .card h2 { font-family: 'Cinzel', serif; color: var(--gold-light); margin-bottom: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: .3rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: .6rem; background: rgba(255,255,255,.05);
+            border: 1px solid rgba(201,168,76,.2); color: var(--cream); font-family: inherit;
+        }
+        #editorArea { min-height: 200px; background: rgba(255,255,255,.05); padding: .8rem; border: 1px solid rgba(201,168,76,.2); outline: none; }
+        .toolbar { display: flex; gap: .3rem; margin-bottom: .5rem; }
+        .tool-btn { background: var(--bg-dark); border: 1px solid rgba(201,168,76,.2); color: var(--gold); padding: .3rem .6rem; cursor: pointer; font-size: .7rem; }
+        .tool-btn:hover { background: var(--gold); color: var(--bg-deep); }
+        .actions { display: flex; gap: .5rem; margin-top: 1rem; }
+        .btn { padding: .6rem 1.2rem; border: none; font-family: 'Cinzel', serif; text-transform: uppercase; cursor: pointer; font-size: .7rem; }
+        .btn-publish { background: var(--gold); color: var(--bg-deep); }
+        .btn-draft { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+        .btn-reset { background: transparent; border: 1px solid var(--danger); color: var(--danger); }
+        .art-item { display: flex; align-items: center; gap: 1rem; padding: .8rem; border-bottom: 1px solid rgba(201,168,76,.1); }
+        .art-item:last-child { border-bottom: none; }
+        .art-info { flex: 1; }
+        .art-btns { display: flex; gap: .3rem; }
+        .mini-btn { background: transparent; border: 1px solid rgba(201,168,76,.2); color: var(--gold); padding: .2rem .5rem; cursor: pointer; font-size: .7rem; }
+        .mini-btn.del { border-color: var(--danger); color: var(--danger); }
+        .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--success); color: white; padding: 1rem; z-index: 999; transition: .3s; }
+        @media (max-width: 800px) { .admin-body { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="loginScreen">
+        <div class="login-box">
+            <h1>✦ Administration</h1>
+            <div class="login-field"><label>Identifiant</label><input type="text" id="loginUser" placeholder="admin"></div>
+            <div class="login-field"><label>Mot de passe</label><input type="password" id="loginPass" placeholder="••••"></div>
+            <button class="login-btn" onclick="doLogin()">Se connecter</button>
+            <p class="login-error" id="loginError">Identifiants incorrects.</p>
+        </div>
+    </div>
+
+    <div id="adminScreen">
+        <div class="admin-top">
+            <span style="font-family:'Cinzel Decorative',serif; color:var(--gold);">Togbé Yédy Admin</span>
+            <button onclick="doLogout()" style="background:transparent; border:1px solid rgba(201,168,76,.3); color:var(--text-muted); padding:.4rem 1rem; cursor:pointer;">Déconnexion</button>
+        </div>
+        <div class="admin-body">
+            <div class="card">
+                <h2 id="formTitle">Nouvelle actualité</h2>
+                <div class="form-group"><label>Titre *</label><input type="text" id="fTitre"></div>
+                <div class="form-group"><label>Catégorie *</label>
+                    <select id="fCategorie">
+                        <option value="">— Choisir —</option>
+                        <option>Spiritualité</option>
+                        <option>Événements</option>
+                        <option>Distinction</option>
+                        <option>Culture</option>
+                        <option>Médias</option>
+                        <option>Gouvernement</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Image (URL)</label>
+                    <input type="text" id="fImageUrl" placeholder="https://..." oninput="previewImg(this.value)">
+                    <img id="imgPreview" style="max-width:200px; margin-top:.5rem; display:none;" />
+                </div>
+                <div class="form-group"><label>Contenu *</label>
+                    <div class="toolbar">
+                        <button class="tool-btn" onclick="fmt('bold')"><b>G</b></button>
+                        <button class="tool-btn" onclick="fmt('italic')"><i>I</i></button>
+                        <button class="tool-btn" onclick="fmt('underline')"><u>S</u></button>
+                        <button class="tool-btn" onclick="fmtBlock('h2')">Titre</button>
+                        <button class="tool-btn" onclick="fmt('insertUnorderedList')">• Liste</button>
+                    </div>
+                    <div id="editorArea" contenteditable="true"></div>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-publish" onclick="saveArticle(true)">Publier</button>
+                    <button class="btn btn-draft" onclick="saveArticle(false)">Brouillon</button>
+                    <button class="btn btn-reset" onclick="resetForm()">Effacer</button>
+                </div>
+                <div id="formMsg" style="margin-top:1rem; display:none;"></div>
+            </div>
+            <div>
+                <div class="card"><h2>Articles</h2><div id="artList"></div></div>
+            </div>
+        </div>
+    </div>
+    <div id="toast" class="toast" style="display:none;"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, getDocs, getDoc, query, orderBy, Timestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDkAX4UdiuUyfR3c5_E7qPG6xpCtWr3FYw",
+            authDomain: "togbeyedy-49129.firebaseapp.com",
+            projectId: "togbeyedy-49129",
+            storageBucket: "togbeyedy-49129.firebasestorage.app",
+            messagingSenderId: "895068990371",
+            appId: "1:895068990371:web:d9c918d6b588a6b4338816"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const ADMIN_USER = "admintogbe";
+        const ADMIN_PASS = "togbe2026!";
+        let editingId = null;
+
+        window.doLogin = () => {
+            const u = document.getElementById('loginUser').value.trim();
+            const p = document.getElementById('loginPass').value;
+            if (u === ADMIN_USER && p === ADMIN_PASS) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminScreen').style.display = 'block';
+                loadList();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+                setTimeout(() => document.getElementById('loginError').style.display = 'none', 3000);
+            }
+        };
+        window.doLogout = () => {
+            document.getElementById('adminScreen').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'flex';
+        };
+
+        window.resetForm = () => {
+            editingId = null;
+            document.getElementById('fTitre').value = '';
+            document.getElementById('fCategorie').value = '';
+            document.getElementById('editorArea').innerHTML = '';
+            document.getElementById('fImageUrl').value = '';
+            document.getElementById('imgPreview').style.display = 'none';
+            document.getElementById('formTitle').textContent = 'Nouvelle actualité';
+        };
+
+        window.previewImg = (url) => {
+            const img = document.getElementById('imgPreview');
+            if (!url || !url.startsWith('http')) { img.style.display = 'none'; return; }
+            img.src = url; img.style.display = 'block';
+        };
+
+        window.saveArticle = async (publie) => {
+            const titre = document.getElementById('fTitre').value.trim();
+            const categorie = document.getElementById('fCategorie').value;
+            const contenu = document.getElementById('editorArea').innerHTML.trim();
+            if (!titre || !categorie || !contenu || contenu === '<br>') {
+                showMsg('Remplissez tous les champs obligatoires.', 'err');
+                return;
+            }
+            const imageUrl = document.getElementById('fImageUrl').value.trim() || null;
+            const data = {
+                titre, categorie, contenu, publie,
+                auteur: 'Majesté Togbé Yédy',
+                imageUrl,
+                updatedAt: Timestamp.now()
+            };
+            try {
+                if (editingId) {
+                    await updateDoc(doc(db, 'actualites', editingId), data);
+                    toast('Article modifié');
+                } else {
+                    data.date = Timestamp.now();
+                    await addDoc(collection(db, 'actualites'), data);
+                    toast(publie ? 'Publié !' : 'Brouillon enregistré');
+                }
+                resetForm();
+                loadList();
+            } catch(e) {
+                showMsg('Erreur : ' + e.message, 'err');
+            }
+        };
+
+        window.loadList = async () => {
+            const q = query(collection(db, 'actualites'), orderBy('date', 'desc'));
+            const snap = await getDocs(q);
+            const articles = snap.docs.map(d => ({id: d.id, ...d.data()}));
+            const list = document.getElementById('artList');
+            if (articles.length === 0) {
+                list.innerHTML = '<p>Aucun article.</p>'; return;
+            }
+            list.innerHTML = articles.map(a => `
+                <div class="art-item">
+                    <div class="art-info">
+                        <strong style="color:var(--gold-light);">${a.titre}</strong>
+                        <span style="font-size:.7rem; color:var(--text-muted);"> ${a.categorie} · ${a.publie?'Publié':'Brouillon'}</span>
+                    </div>
+                    <div class="art-btns">
+                        <button class="mini-btn" onclick="editArticle('${a.id}')">✏️</button>
+                        <button class="mini-btn" onclick="togglePub('${a.id}', ${a.publie})">${a.publie?'🔒':'🌐'}</button>
+                        <button class="mini-btn del" onclick="delArticle('${a.id}')">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        window.editArticle = async (id) => {
+            const snap = await getDoc(doc(db, 'actualites', id));
+            if (!snap.exists()) return;
+            const a = snap.data();
+            editingId = id;
+            document.getElementById('fTitre').value = a.titre || '';
+            document.getElementById('fCategorie').value = a.categorie || '';
+            document.getElementById('editorArea').innerHTML = a.contenu || '';
+            document.getElementById('fImageUrl').value = a.imageUrl || '';
+            if (a.imageUrl) previewImg(a.imageUrl);
+            document.getElementById('formTitle').textContent = 'Modifier l\'actualité';
+            window.scrollTo({top:0, behavior:'smooth'});
+        };
+
+        window.togglePub = async (id, current) => {
+            await updateDoc(doc(db, 'actualites', id), { publie: !current });
+            toast(!current ? 'Publié' : 'Masqué');
+            loadList();
+        };
+
+        window.delArticle = async (id) => {
+            if (!confirm('Supprimer définitivement ?')) return;
+            await deleteDoc(doc(db, 'actualites', id));
+            toast('Supprimé');
+            loadList();
+        };
+
+        window.fmt = (cmd) => { document.execCommand(cmd, false, null); document.getElementById('editorArea').focus(); };
+        window.fmtBlock = (tag) => { document.execCommand('formatBlock', false, '<' + tag + '>'); };
+
+        function toast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg; t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 3000);
+        }
+        function showMsg(msg, type) {
+            const el = document.getElementById('formMsg');
+            el.textContent = msg; el.style.display = 'block';
+            el.style.color = type === 'err' ? 'var(--danger)' : 'var(--success)';
+            setTimeout(() => el.style.display = 'none', 4000);
+        }
+    </script>
+</body>
+</html>
