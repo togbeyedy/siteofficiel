@@ -4,82 +4,244 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Actualités — Majesté Togbé Yédy | Patrice Hounsa</title>
-    <meta name="description" content="Toutes les actualités de Sa Majesté Togbé Yédy : spiritualité, événements, distinctions, culture et médias." />
+    <meta name="description" content="Toutes les actualités de Sa Majesté Togbé Yédy : spiritualité, événements, distinctions, culture, médias. Suivez l'actualité du Hounnongan, Ambassadeur de la paix au Bénin." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.togbeyedy.com/actualites.html" />
     <meta property="og:title" content="Actualités — Majesté Togbé Yédy" />
     <meta property="og:description" content="Suivez l'actualité de Togbé Yédy, Hounnongan et acteur des grands événements au Bénin." />
     <meta property="og:image" content="https://www.togbeyedy.com/to1.jpg" />
     <meta property="og:url" content="https://www.togbeyedy.com/actualites.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_BJ" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Actualités — Majesté Togbé Yédy" />
+    <meta name="twitter:description" content="Spiritualité, événements, distinctions, culture : les actualités de Togbé Yédy." />
+    <meta name="twitter:image" content="https://www.togbeyedy.com/to1.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
     <style>
         :root {
-            --gold: #C9A84C; --gold-light: #F0D080; --gold-dark: #8B6914; --bg-deep: #080604; --bg-dark: #100D08;
-            --bg-card: #181210; --cream: #F5ECD7; --text-muted: #9E8A6A; --nav-h: 60px;
+            --blanc: #FFFFFF;
+            --noir: #111111;
+            --rouge: #CC0000;
+            --rouge-fonce: #990000;
+            --bleu: #1A3A5C;
+            --bleu-clair: #2C5F8A;
+            --or: #C9A84C;
+            --or-clair: #E5C471;
+            --gris-clair: #F5F5F5;
+            --gris: #E0E0E0;
+            --gris-fonce: #666666;
+            --whatsapp: #25D366;
+            --nav-h: 70px;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background: var(--bg-deep); color: var(--cream); font-family: 'EB Garamond', serif; font-size: 18px; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--bg-deep); } ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: .85rem 5%; background: rgba(8,6,4,.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,168,76,.18); }
-        .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: .9rem; color: var(--gold); letter-spacing: .1em; text-decoration: none; }
-        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
-        .nav-links a { font-family: 'Cinzel', serif; font-size: .67rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color .3s; position: relative; padding-bottom: 4px; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform .3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+        body {
+            background: var(--blanc);
+            color: var(--noir);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--noir); }
+
+        /* Navigation */
+        nav#navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            height: var(--nav-h); padding: 0 5%;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gris);
+            transition: box-shadow 0.3s;
+        }
+        nav#navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .nav-logo {
+            font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
+            color: var(--noir); text-decoration: none; letter-spacing: 0.05em;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-logo span { color: var(--rouge); }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+        .nav-links a {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--noir); text-decoration: none;
+            position: relative; padding-bottom: 4px; transition: color 0.3s;
+        }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--rouge); transform: scaleX(0); transition: transform 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--rouge); }
         .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 201; }
-        .hamburger span { width: 26px; height: 2px; background: var(--gold); transition: .3s; display: block; }
-        .nav-mobile { display: none; position: fixed; top: 60px; inset-inline: 0; bottom: 0; background: rgba(8,6,4,.98); z-index: 190; flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem; }
+        .nav-cta {
+            background: var(--rouge) !important; color: var(--blanc) !important;
+            padding: 0.55rem 1.4rem !important; border-radius: 4px !important;
+            transition: background 0.3s !important;
+        }
+        .nav-cta:hover { background: var(--rouge-fonce) !important; }
+        .nav-cta::after { display: none !important; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1001; }
+        .hamburger span { width: 26px; height: 2px; background: var(--noir); transition: 0.3s; display: block; border-radius: 2px; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .nav-mobile {
+            display: none; position: fixed; top: var(--nav-h); inset-inline: 0; bottom: 0;
+            background: rgba(255,255,255,0.99); z-index: 999; flex-direction: column;
+            align-items: center; justify-content: center; gap: 1.8rem;
+        }
         .nav-mobile.open { display: flex; }
-        .nav-mobile a { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); text-decoration: none; }
-        .hero { padding: calc(var(--nav-h) + 3rem) 5% 3rem; background: linear-gradient(135deg, #0e0b06 0%, #1a130a 50%, #0e0b06 100%); text-align: center; }
-        .hero h1 { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 5vw, 4rem); background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
-        .hero p { color: var(--text-muted); font-style: italic; }
-        .barre-filtres { background: var(--bg-dark); padding: 1rem 5%; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; border-bottom: 1px solid rgba(201,168,76,.25); position: sticky; top: var(--nav-h); z-index: 50; }
-        .bouton-filtre { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; padding: .45rem 1rem; border: 1px solid rgba(201,168,76,.3); background: transparent; color: var(--text-muted); cursor: pointer; transition: all .3s; }
-        .bouton-filtre:hover, .bouton-filtre.active { background: var(--gold); color: var(--bg-deep); border-color: var(--gold); }
+        .nav-mobile a {
+            font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase; color: var(--noir); text-decoration: none;
+        }
+
+        /* Hero */
+        .hero {
+            padding: calc(var(--nav-h) + 2rem) 5% 2rem;
+            background: var(--gris-clair); text-align: center;
+            border-bottom: 2px solid var(--rouge);
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
+            color: var(--noir); margin-bottom: 0.5rem; font-weight: 900;
+        }
+        .hero h1 span { color: var(--rouge); }
+        .hero p { color: var(--gris-fonce); font-style: italic; font-size: 1.05rem; }
+
+        /* Barre de filtres */
+        .barre-filtres {
+            background: var(--blanc); padding: 1rem 5%; display: flex; flex-wrap: wrap;
+            gap: 0.5rem; align-items: center; border-bottom: 1px solid var(--gris);
+            position: sticky; top: var(--nav-h); z-index: 50;
+        }
+        .bouton-filtre {
+            font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem;
+            border: 2px solid var(--gris); background: var(--blanc); color: var(--noir);
+            cursor: pointer; transition: all 0.3s; border-radius: 4px;
+        }
+        .bouton-filtre:hover, .bouton-filtre.active {
+            background: var(--rouge); color: var(--blanc); border-color: var(--rouge);
+        }
         .recherche { margin-left: auto; position: relative; }
-        .champ-recherche { padding: .4rem 1rem .4rem 2.2rem; border: 1px solid rgba(201,168,76,.3); background: rgba(255,255,255,.05); color: var(--cream); outline: none; width: 200px; font-family: 'EB Garamond', serif; }
-        .icone-recherche { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .champ-recherche {
+            padding: 0.4rem 1rem 0.4rem 2.2rem; border: 2px solid var(--gris);
+            background: var(--blanc); color: var(--noir); outline: none;
+            width: 220px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem;
+            border-radius: 4px;
+        }
+        .icone-recherche { position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: var(--gris-fonce); }
+
+        /* Contenu */
         .conteneur { max-width: 1200px; margin: 2rem auto; padding: 0 5%; }
         .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
-        .carte { background: var(--bg-card); border: 1px solid rgba(201,168,76,.12); border-radius: 6px; overflow: hidden; transition: all .3s; cursor: pointer; }
-        .carte:hover { transform: translateY(-5px); border-color: var(--gold); }
-        .carte-image { width: 100%; height: 220px; object-fit: contain; background: #0a0805; }
-        .carte-placeholder { width: 100%; height: 220px; background: rgba(201,168,76,.05); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--text-muted); }
+        .carte {
+            background: var(--blanc); border: 1px solid var(--gris); border-radius: 8px;
+            overflow: hidden; transition: all 0.3s; cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .carte:hover { transform: translateY(-5px); border-color: var(--rouge); box-shadow: 0 10px 30px rgba(204,0,0,0.1); }
+        .carte-image {
+            width: 100%; height: 200px; object-fit: contain; background: var(--gris-clair);
+            border-bottom: 1px solid var(--gris);
+        }
+        .carte-placeholder {
+            width: 100%; height: 200px; background: var(--gris-clair);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: var(--gris);
+        }
         .carte-corps { padding: 1.2rem; }
-        .carte-categorie { display: inline-block; padding: .15rem .6rem; font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--bg-deep); background: var(--gold); margin-bottom: .6rem; }
-        .carte-titre { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-light); margin-bottom: .5rem; }
-        .carte-date { font-size: .7rem; color: var(--text-muted); }
-        .carte-extrait { color: rgba(245,236,215,.7); font-size: .9rem; line-height: 1.6; }
-        .pagination { display: flex; justify-content: center; gap: .5rem; margin-top: 2rem; }
-        .page-btn { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(201,168,76,.2); background: transparent; color: var(--text-muted); cursor: pointer; transition: .3s; }
-        .page-btn.active, .page-btn:hover { background: var(--gold); color: var(--bg-deep); border-color: var(--gold); }
-        .spinner { width: 40px; height: 40px; border: 3px solid rgba(201,168,76,.2); border-top-color: var(--gold); border-radius: 50%; animation: spin .8s linear infinite; margin: 2rem auto; }
+        .carte-categorie {
+            display: inline-block; padding: 0.15rem 0.6rem; font-size: 0.6rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase; color: var(--blanc);
+            background: var(--rouge); border-radius: 3px; margin-bottom: 0.6rem;
+        }
+        .carte-titre { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--noir); margin-bottom: 0.5rem; font-weight: 700; }
+        .carte-date { font-size: 0.7rem; color: var(--gris-fonce); margin-bottom: 0.5rem; }
+        .carte-extrait { color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.6; }
+        .pagination { display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
+        .page-btn {
+            width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
+            border: 2px solid var(--gris); background: var(--blanc); color: var(--noir);
+            cursor: pointer; transition: all 0.3s; font-size: 0.8rem; font-weight: 700;
+            border-radius: 4px;
+        }
+        .page-btn.active, .page-btn:hover { background: var(--rouge); color: var(--blanc); border-color: var(--rouge); }
+        .spinner {
+            width: 40px; height: 40px; border: 3px solid var(--gris);
+            border-top-color: var(--rouge); border-radius: 50%; animation: spin 0.8s linear infinite;
+            margin: 2rem auto;
+        }
         @keyframes spin { to { transform: rotate(360deg); } }
-        footer { background: #050402; border-top: 1px solid rgba(201,168,76,.15); padding: 2.5rem 5%; text-align: center; margin-top: 3rem; }
-        .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0; }
-        .footer-nav a { font-family: 'Cinzel', serif; font-size: .62rem; color: var(--text-muted); text-transform: uppercase; text-decoration: none; }
-        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .bouton-filtre { font-size: .55rem; } }
+        .vide { text-align: center; padding: 3rem; color: var(--gris-fonce); }
+
+        /* Footer */
+        footer { background: var(--noir); color: var(--blanc); padding: 3rem 5%; text-align: center; margin-top: 3rem; }
+        footer .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        footer .footer-logo span { color: var(--rouge); }
+        .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin: 1.2rem 0; }
+        .footer-nav a { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
+        .footer-nav a:hover { color: var(--rouge); }
+
+        /* WhatsApp */
+        .wa-float {
+            position: fixed; bottom: 25px; right: 25px; z-index: 9999;
+            width: 55px; height: 55px; background: var(--whatsapp); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none;
+        }
+        .wa-float svg { width: 30px; height: 30px; fill: white; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 2rem; }
+            .barre-filtres { padding: 0.8rem 4%; }
+            .champ-recherche { width: 160px; }
+            .grille { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
+    <!-- NAVIGATION -->
     <nav id="navbar">
-        <a href="index.html" class="nav-logo">✦ Togbé Yédy</a>
+        <a href="index.html" class="nav-logo">✦ Togbé <span>Yédy</span></a>
         <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li><li><a href="decouverte.html">Découverte</a></li><li><a href="vodun.html">Vodun</a></li><li><a href="festivals.html">Festivals</a></li><li><a href="guerison.html">Guérisons</a></li><li><a href="gouvernement.html">Gouvernement</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="contact.html">Contact</a></li><li><a href="actualites.html" class="active">Actualités</a></li>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="decouverte.html">Découverte</a></li>
+            <li><a href="vodun.html">Vodun</a></li>
+            <li><a href="festivals.html">Festivals</a></li>
+            <li><a href="guerison.html">Guérisons</a></li>
+            <li><a href="gouvernement.html">Gouvernement</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="actualites.html" class="active">Actualités</a></li>
+            <li><a href="contact.html" class="nav-cta">Contact</a></li>
         </ul>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </nav>
     <div class="nav-mobile" id="nav-mobile">
-        <a href="index.html">Accueil</a><a href="decouverte.html">Découverte</a><a href="vodun.html">Vodun</a><a href="festivals.html">Festivals</a><a href="guerison.html">Guérisons</a><a href="gouvernement.html">Gouvernement</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a><a href="actualites.html">Actualités</a>
+        <a href="index.html">Accueil</a>
+        <a href="decouverte.html">Découverte</a>
+        <a href="vodun.html">Vodun</a>
+        <a href="festivals.html">Festivals</a>
+        <a href="guerison.html">Guérisons</a>
+        <a href="gouvernement.html">Gouvernement</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="actualites.html">Actualités</a>
+        <a href="contact.html">Contact</a>
     </div>
 
-    <div class="hero"><h1>Actualités</h1><p>Suivez l'actualité spirituelle et publique de Sa Majesté Togbé Yédy</p></div>
+    <!-- HERO -->
+    <header class="hero">
+        <h1>Actualités <span>de Sa Majesté</span></h1>
+        <p>Spiritualité, événements, distinctions, culture — suivez l'actualité du Hounnongan Togbé Yédy</p>
+    </header>
 
+    <!-- FILTRES -->
     <div class="barre-filtres">
         <button class="bouton-filtre active" data-cat="all">Tous</button>
         <button class="bouton-filtre" data-cat="Spiritualité">Spiritualité</button>
@@ -88,24 +250,42 @@
         <button class="bouton-filtre" data-cat="Culture">Culture</button>
         <button class="bouton-filtre" data-cat="Médias">Médias</button>
         <button class="bouton-filtre" data-cat="Gouvernement">Gouvernement</button>
-        <div class="recherche"><span class="icone-recherche">🔍</span><input type="text" class="champ-recherche" id="champRecherche" placeholder="Rechercher..."></div>
+        <div class="recherche">
+            <span class="icone-recherche">🔍</span>
+            <input type="text" class="champ-recherche" id="champRecherche" placeholder="Rechercher...">
+        </div>
     </div>
 
+    <!-- CONTENU DYNAMIQUE -->
     <div class="conteneur">
         <div id="chargement" style="text-align:center;"><div class="spinner"></div></div>
         <div id="grilleArticles" class="grille" style="display:none;"></div>
-        <div id="vide" style="display:none; text-align:center; padding:3rem; color:var(--text-muted);">Aucune actualité trouvée.</div>
+        <div id="vide" class="vide" style="display:none;">Aucune actualité trouvée.</div>
         <div id="pagination" class="pagination"></div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
-        <div style="font-family:'Cinzel Decorative',serif; color:var(--gold);">Togbé Yédy</div>
-        <p style="color:var(--text-muted);">Hounnongan · Dignitaire du Culte Vodun</p>
+        <div class="footer-logo">Togbé <span>Yédy</span></div>
+        <p style="opacity:0.7;">Hounnongan · Dignitaire du Culte Vodun · Membre du Comité des Rites Vodun</p>
         <div class="footer-nav">
-            <a href="index.html">Accueil</a><a href="decouverte.html">Découverte</a><a href="vodun.html">Vodun</a><a href="festivals.html">Festivals</a><a href="guerison.html">Guérisons</a><a href="gouvernement.html">Gouvernement</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a><a href="actualites.html">Actualités</a>
+            <a href="index.html">Accueil</a>
+            <a href="decouverte.html">Découverte</a>
+            <a href="vodun.html">Vodun</a>
+            <a href="festivals.html">Festivals</a>
+            <a href="guerison.html">Guérisons</a>
+            <a href="gouvernement.html">Gouvernement</a>
+            <a href="galerie.html">Galerie</a>
+            <a href="actualites.html">Actualités</a>
+            <a href="contact.html">Contact</a>
         </div>
-        <p style="font-size:.72rem; opacity:.5;">© 2026 Majesté Togbé Yédy — Patrice Hounsa</p>
+        <p style="font-size:0.7rem; opacity:0.5;">© 2026 Majesté Togbé Yédy — Patrice Hounsa. Tous droits réservés.</p>
     </footer>
+
+    <!-- WHATSAPP FLOTTANT -->
+    <a href="https://wa.me/2290197101008?text=Bonjour%20Majesté%20Togbé%20Yédy%2C%20je%20vous%20contacte%20depuis%20votre%20site%20officiel." target="_blank" class="wa-float" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -205,7 +385,7 @@
                 tous = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
                 appliquerFiltres();
             } catch (e) {
-                document.getElementById('chargement').innerHTML = '<p style="color:red;">Erreur de chargement : ' + e.message + '</p>';
+                document.getElementById('chargement').innerHTML = '<p style="color:var(--rouge);">Erreur de chargement : ' + e.message + '</p>';
                 console.error(e);
             }
         }
@@ -227,10 +407,18 @@
     </script>
 
     <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
         const hamburger = document.getElementById('hamburger');
         const navMobile = document.getElementById('nav-mobile');
-        hamburger.addEventListener('click', () => { navMobile.classList.toggle('open'); hamburger.classList.toggle('active'); });
-        document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => { navMobile.classList.remove('open'); hamburger.classList.remove('active'); }));
+        hamburger.addEventListener('click', () => {
+            navMobile.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => {
+            navMobile.classList.remove('open');
+            hamburger.classList.remove('open');
+        }));
     </script>
 </body>
 </html>
