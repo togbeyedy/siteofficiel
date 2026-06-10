@@ -24,8 +24,15 @@
         .sous-titre-connexion { font-size: 0.85rem; color: var(--fb-gray); margin-bottom: 2rem; }
         .champ-connexion { margin-bottom: 1rem; text-align: left; }
         .champ-connexion label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--fb-dark); margin-bottom: 0.3rem; }
-        .champ-connexion input { width: 100%; padding: 0.85rem; border: 1px solid var(--fb-border); border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
-        .champ-connexion input:focus { border-color: var(--fb-blue); box-shadow: 0 0 0 2px rgba(24,119,242,0.2); }
+        .input-avec-icone { position: relative; }
+        .input-avec-icone input { width: 100%; padding: 0.85rem 2.5rem 0.85rem 1rem; border: 1px solid var(--fb-border); border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+        .input-avec-icone input:focus { border-color: var(--fb-blue); box-shadow: 0 0 0 2px rgba(24,119,242,0.2); }
+        .bouton-oeil {
+            position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%);
+            background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 0.3rem;
+            color: var(--fb-gray); transition: color 0.2s;
+        }
+        .bouton-oeil:hover { color: var(--fb-blue); }
         .bouton-connexion { width: 100%; padding: 0.9rem; background: var(--fb-blue); color: white; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
         .bouton-connexion:hover { background: var(--fb-blue-hover); }
         .erreur-connexion { color: var(--fb-danger); font-size: 0.8rem; margin-top: 0.8rem; display: none; }
@@ -83,7 +90,13 @@
         <div class="logo-connexion">✦ Administration</div>
         <p class="sous-titre-connexion">Majesté Togbé Yédy — Patrice Hounsa</p>
         <div class="champ-connexion"><label>Identifiant</label><input type="text" id="identifiant" placeholder="Votre identifiant"></div>
-        <div class="champ-connexion"><label>Mot de passe</label><input type="password" id="motdepasse" placeholder="••••••"></div>
+        <div class="champ-connexion">
+            <label>Mot de passe</label>
+            <div class="input-avec-icone">
+                <input type="password" id="motdepasse" placeholder="••••••">
+                <button type="button" class="bouton-oeil" id="boutonOeil" title="Afficher / Masquer le mot de passe">👁️</button>
+            </div>
+        </div>
         <button class="bouton-connexion" id="boutonConnexion">Connexion</button>
         <p class="erreur-connexion" id="erreurConnexion">Identifiants incorrects.</p>
     </div>
@@ -96,15 +109,12 @@
         <button class="bouton-deconnexion" id="boutonDeconnexion">Déconnexion</button>
     </div>
     <div class="corps-admin">
+        <!-- Formulaire (identique à la version précédente, je le raccourcis ici pour lisibilité) -->
         <div class="carte">
             <h2 id="titreFormulaire">✍️ Nouvelle actualité</h2>
             <div class="ligne-formulaire">
-                <div class="groupe-formulaire">
-                    <label>Titre *</label>
-                    <input type="text" id="champTitre" placeholder="Titre de l'actualité">
-                </div>
-                <div class="groupe-formulaire">
-                    <label>Catégorie *</label>
+                <div class="groupe-formulaire"><label>Titre *</label><input type="text" id="champTitre" placeholder="Titre de l'actualité"></div>
+                <div class="groupe-formulaire"><label>Catégorie *</label>
                     <select id="champCategorie">
                         <option value="">— Choisir —</option>
                         <option value="Spiritualité">Spiritualité</option>
@@ -124,10 +134,7 @@
                 </div>
                 <img id="imageApercu" class="apercu-image" alt="Aperçu de l'image">
             </div>
-            <div class="groupe-formulaire">
-                <label>Vidéo (URL) — optionnel</label>
-                <input type="text" id="champVideo" placeholder="https://www.youtube.com/watch?v=... ou lien direct mp4">
-            </div>
+            <div class="groupe-formulaire"><label>Vidéo (URL) — optionnel</label><input type="text" id="champVideo" placeholder="https://www.youtube.com/watch?v=..."></div>
             <div class="groupe-formulaire">
                 <label>Contenu *</label>
                 <div class="barre-outils">
@@ -148,12 +155,8 @@
             </div>
             <div class="message-formulaire" id="messageFormulaire"></div>
         </div>
-
         <div>
-            <div class="carte">
-                <h2>📰 Mes actualités</h2>
-                <div id="listeArticles"><p>Chargement...</p></div>
-            </div>
+            <div class="carte"><h2>📰 Mes actualités</h2><div id="listeArticles"><p>Chargement...</p></div></div>
         </div>
     </div>
 </div>
@@ -184,6 +187,7 @@
     const ecranAdmin = document.getElementById('ecranAdmin');
     const inputIdentifiant = document.getElementById('identifiant');
     const inputMotdepasse = document.getElementById('motdepasse');
+    const boutonOeil = document.getElementById('boutonOeil');
     const boutonConnexion = document.getElementById('boutonConnexion');
     const boutonDeconnexion = document.getElementById('boutonDeconnexion');
     const erreurConnexion = document.getElementById('erreurConnexion');
@@ -202,6 +206,14 @@
     const boutonEffacer = document.getElementById('boutonEffacer');
     const boutonPostImage = document.getElementById('boutonPostImage');
 
+    // Gestion de la visibilité du mot de passe
+    let motdepasseVisible = false;
+    boutonOeil.addEventListener('click', () => {
+        motdepasseVisible = !motdepasseVisible;
+        inputMotdepasse.type = motdepasseVisible ? 'text' : 'password';
+        boutonOeil.textContent = motdepasseVisible ? '🙈' : '👁️';
+    });
+
     // Fonctions de session
     function estConnecte() {
         return localStorage.getItem(CLE_SESSION) === "oui";
@@ -213,7 +225,6 @@
         localStorage.removeItem(CLE_SESSION);
     }
 
-    // Initialisation : afficher l'écran approprié
     if (estConnecte()) {
         ecranConnexion.style.display = 'none';
         ecranAdmin.style.display = 'block';
@@ -223,7 +234,6 @@
         ecranAdmin.style.display = 'none';
     }
 
-    // Connexion
     boutonConnexion.addEventListener('click', () => {
         const u = inputIdentifiant.value.trim();
         const p = inputMotdepasse.value;
@@ -235,30 +245,35 @@
             inputIdentifiant.value = '';
             inputMotdepasse.value = '';
             erreurConnexion.style.display = 'none';
+            // Réinitialiser la visibilité
+            inputMotdepasse.type = 'password';
+            boutonOeil.textContent = '👁️';
+            motdepasseVisible = false;
         } else {
             erreurConnexion.style.display = 'block';
             setTimeout(() => erreurConnexion.style.display = 'none', 3000);
         }
     });
 
-    // Touche Entrée sur le mot de passe
     inputMotdepasse.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') boutonConnexion.click();
     });
 
-    // Déconnexion
     boutonDeconnexion.addEventListener('click', () => {
         seDeconnecter();
         ecranAdmin.style.display = 'none';
         ecranConnexion.style.display = 'flex';
         inputIdentifiant.value = '';
         inputMotdepasse.value = '';
-        // Réinitialiser le formulaire au cas où
+        inputMotdepasse.type = 'password';
+        boutonOeil.textContent = '👁️';
+        motdepasseVisible = false;
         reinitialiserFormulaire();
-        console.log('Déconnexion réussie.');
     });
 
-    // Réinitialiser le formulaire
+    // ... le reste du code est identique à la version précédente (reinitialiserFormulaire, enregistrerArticle, etc.)
+    // Je l'inclus intégralement pour que la page soit complète et fonctionnelle.
+
     function reinitialiserFormulaire() {
         idEnCours = null;
         champTitre.value = '';
@@ -272,7 +287,6 @@
     }
     boutonEffacer.addEventListener('click', reinitialiserFormulaire);
 
-    // Aperçu image
     champImage.addEventListener('input', () => {
         const url = champImage.value.trim();
         if (!url || !url.startsWith('http')) {
@@ -283,12 +297,8 @@
         imageApercu.style.display = 'block';
     });
 
-    // Bouton PostImage
-    boutonPostImage.addEventListener('click', () => {
-        window.open('https://postimages.org/fr/', '_blank');
-    });
+    boutonPostImage.addEventListener('click', () => window.open('https://postimages.org/fr/', '_blank'));
 
-    // Enregistrer article
     async function enregistrerArticle(publie) {
         const titre = champTitre.value.trim();
         const categorie = champCategorie.value;
@@ -300,16 +310,7 @@
         const imageUrl = champImage.value.trim() || null;
         const videoUrl = champVideo.value.trim() || null;
         const maintenant = Timestamp.now();
-        const donnees = {
-            titre,
-            categorie,
-            contenu,
-            publie,
-            auteur: 'Majesté Togbé Yédy',
-            imageUrl,
-            videoUrl,
-            updatedAt: maintenant
-        };
+        const donnees = { titre, categorie, contenu, publie, auteur: 'Majesté Togbé Yédy', imageUrl, videoUrl, updatedAt: maintenant };
         try {
             if (idEnCours) {
                 await updateDoc(doc(db, 'Actualités', idEnCours), donnees);
@@ -329,7 +330,6 @@
     boutonPublier.addEventListener('click', () => enregistrerArticle(true));
     boutonBrouillon.addEventListener('click', () => enregistrerArticle(false));
 
-    // Charger liste des articles
     async function chargerListe() {
         listeArticles.innerHTML = '<p>Chargement...</p>';
         try {
@@ -356,30 +356,18 @@
                     </div>
                 </div>
             `).join('');
-
-            // Attacher les événements aux mini-boutons
-            document.querySelectorAll('.mini-bouton.editer').forEach(btn => {
-                btn.addEventListener('click', () => editerArticle(btn.dataset.id));
-            });
-            document.querySelectorAll('.mini-bouton.statut').forEach(btn => {
-                btn.addEventListener('click', () => changerStatut(btn.dataset.id, btn.dataset.publie === 'true'));
-            });
-            document.querySelectorAll('.mini-bouton.supprimer').forEach(btn => {
-                btn.addEventListener('click', () => supprimerArticle(btn.dataset.id));
-            });
+            document.querySelectorAll('.mini-bouton.editer').forEach(btn => btn.addEventListener('click', () => editerArticle(btn.dataset.id)));
+            document.querySelectorAll('.mini-bouton.statut').forEach(btn => btn.addEventListener('click', () => changerStatut(btn.dataset.id, btn.dataset.publie === 'true')));
+            document.querySelectorAll('.mini-bouton.supprimer').forEach(btn => btn.addEventListener('click', () => supprimerArticle(btn.dataset.id)));
         } catch (erreur) {
             console.error(erreur);
             listeArticles.innerHTML = '<p style="color:red;">Erreur de chargement.</p>';
         }
     }
 
-    // Éditer article
     async function editerArticle(id) {
         const docSnap = await getDoc(doc(db, 'Actualités', id));
-        if (!docSnap.exists()) {
-            notifier("Article introuvable", "erreur");
-            return;
-        }
+        if (!docSnap.exists()) { notifier("Article introuvable", "erreur"); return; }
         const a = docSnap.data();
         idEnCours = id;
         champTitre.value = a.titre || '';
@@ -387,24 +375,18 @@
         zoneEditeur.innerHTML = a.contenu || '';
         champImage.value = a.imageUrl || '';
         champVideo.value = a.videoUrl || '';
-        if (a.imageUrl) {
-            imageApercu.src = a.imageUrl;
-            imageApercu.style.display = 'block';
-        } else {
-            imageApercu.style.display = 'none';
-        }
+        if (a.imageUrl) { imageApercu.src = a.imageUrl; imageApercu.style.display = 'block'; }
+        else { imageApercu.style.display = 'none'; }
         titreFormulaire.textContent = '✍️ Modifier l\'actualité';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Changer statut
     async function changerStatut(id, statutActuel) {
         await updateDoc(doc(db, 'Actualités', id), { publie: !statutActuel });
         notifier(!statutActuel ? '🌐 Article publié' : '🔒 Article masqué');
         chargerListe();
     }
 
-    // Supprimer article
     async function supprimerArticle(id) {
         if (!confirm('Supprimer définitivement cet article ?')) return;
         await deleteDoc(doc(db, 'Actualités', id));
@@ -412,7 +394,6 @@
         chargerListe();
     }
 
-    // Outils d'édition
     document.getElementById('outilGras').addEventListener('click', () => { document.execCommand('bold', false, null); zoneEditeur.focus(); });
     document.getElementById('outilItalique').addEventListener('click', () => { document.execCommand('italic', false, null); zoneEditeur.focus(); });
     document.getElementById('outilSouligne').addEventListener('click', () => { document.execCommand('underline', false, null); zoneEditeur.focus(); });
@@ -421,7 +402,6 @@
     document.getElementById('outilListe').addEventListener('click', () => { document.execCommand('insertUnorderedList', false, null); zoneEditeur.focus(); });
     document.getElementById('outilListeNum').addEventListener('click', () => { document.execCommand('insertOrderedList', false, null); zoneEditeur.focus(); });
 
-    // Utilitaires
     function notifier(message, type = '') {
         notification.textContent = message;
         notification.style.display = 'block';
