@@ -10,20 +10,10 @@
     <meta property="og:image" content="https://www.togbeyedy.com/to1.jpg" />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
     <style>
-        :root {
-            --gold: #C9A84C; --gold-light: #F0D080; --gold-dark: #8B6914;
-            --bg-deep: #080604; --bg-dark: #100D08; --bg-card: #181210;
-            --cream: #F5ECD7; --text-muted: #9E8A6A;
-            --nav-h: 60px;
-        }
+        :root { --gold: #C9A84C; --gold-light: #F0D080; --gold-dark: #8B6914; --bg-deep: #080604; --bg-dark: #100D08; --bg-card: #181210; --cream: #F5ECD7; --text-muted: #9E8A6A; --nav-h: 60px; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: var(--bg-deep); color: var(--cream); font-family: 'EB Garamond', serif; overflow-x: hidden; }
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: .85rem 5%; background: rgba(8,6,4,.88);
-            backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,168,76,.18);
-        }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: .85rem 5%; background: rgba(8,6,4,.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,168,76,.18); }
         .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: .9rem; color: var(--gold); text-decoration: none; }
         .nav-links { display: flex; gap: 1.8rem; list-style: none; }
         .nav-links a { font-family: 'Cinzel', serif; font-size: .67rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
@@ -33,7 +23,6 @@
         .nav-mobile { display: none; position: fixed; top: 60px; inset-inline: 0; bottom: 0; background: rgba(8,6,4,.98); z-index: 190; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
         .nav-mobile.open { display: flex; }
         .nav-mobile a { font-family: 'Cinzel', serif; color: var(--cream); text-decoration: none; }
-
         .article-wrap { max-width: 800px; margin: calc(var(--nav-h) + 2rem) auto 3rem; padding: 0 5%; }
         .cover-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 6px; margin-bottom: 1.5rem; }
         .breadcrumb { font-size: .7rem; color: var(--text-muted); margin-bottom: 1rem; }
@@ -59,28 +48,12 @@
     <nav id="navbar">
         <a href="index.html" class="nav-logo">✦ Togbé Yédy</a>
         <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="decouverte.html">Découverte</a></li>
-            <li><a href="vodun.html">Vodun</a></li>
-            <li><a href="festivals.html">Festivals</a></li>
-            <li><a href="guerison.html">Guérisons</a></li>
-            <li><a href="gouvernement.html">Gouvernement</a></li>
-            <li><a href="galerie.html">Galerie</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="actualites.html" class="active">Actualités</a></li>
+            <li><a href="index.html">Accueil</a></li><li><a href="decouverte.html">Découverte</a></li><li><a href="vodun.html">Vodun</a></li><li><a href="festivals.html">Festivals</a></li><li><a href="guerison.html">Guérisons</a></li><li><a href="gouvernement.html">Gouvernement</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="contact.html">Contact</a></li><li><a href="actualites.html" class="active">Actualités</a></li>
         </ul>
         <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </nav>
     <div class="nav-mobile" id="nav-mobile">
-        <a href="index.html">Accueil</a>
-        <a href="decouverte.html">Découverte</a>
-        <a href="vodun.html">Vodun</a>
-        <a href="festivals.html">Festivals</a>
-        <a href="guerison.html">Guérisons</a>
-        <a href="gouvernement.html">Gouvernement</a>
-        <a href="galerie.html">Galerie</a>
-        <a href="contact.html">Contact</a>
-        <a href="actualites.html">Actualités</a>
+        <a href="index.html">Accueil</a><a href="decouverte.html">Découverte</a><a href="vodun.html">Vodun</a><a href="festivals.html">Festivals</a><a href="guerison.html">Guérisons</a><a href="gouvernement.html">Gouvernement</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a><a href="actualites.html">Actualités</a>
     </div>
 
     <div class="article-wrap" id="articleWrap">
@@ -119,7 +92,7 @@
 
         async function loadArticle() {
             try {
-                const snap = await getDoc(doc(db, 'actualites', id));
+                const snap = await getDoc(doc(db, 'Actualités', id));
                 if (!snap.exists() || !snap.data().publie) {
                     window.location.href = 'actualites.html';
                     return;
@@ -150,7 +123,7 @@
         async function loadRelated(cat, excludeId) {
             if (!cat) return;
             const q = query(
-                collection(db, 'actualites'),
+                collection(db, 'Actualités'),
                 where('publie', '==', true),
                 where('categorie', '==', cat),
                 orderBy('date', 'desc'),
@@ -174,14 +147,8 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMobile = document.getElementById('nav-mobile');
-        hamburger.addEventListener('click', () => {
-            navMobile.classList.toggle('open');
-            hamburger.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => {
-            navMobile.classList.remove('open');
-            hamburger.classList.remove('active');
-        }));
+        hamburger.addEventListener('click', () => { navMobile.classList.toggle('open'); hamburger.classList.toggle('active'); });
+        document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => { navMobile.classList.remove('open'); hamburger.classList.remove('active'); }));
     </script>
 </body>
 </html>
