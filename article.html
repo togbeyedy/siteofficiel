@@ -44,7 +44,7 @@
         .content { font-size: 1.05rem; line-height: 1.9; color: rgba(245,236,215,.85); }
         .content h2, .content h3 { color: var(--gold-light); margin: 1.5rem 0 .8rem; }
         .share-bar { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(201,168,76,.15); display: flex; gap: 1rem; flex-wrap: wrap; }
-        .share-btn { background: transparent; border: 1px solid rgba(201,168,76,.3); color: var(--gold); padding: .5rem 1.2rem; cursor: pointer; font-family: 'Cinzel', serif; font-size: .65rem; text-transform: uppercase; transition: .3s; }
+        .share-btn { background: transparent; border: 1px solid rgba(201,168,76,.3); color: var(--gold); padding: .5rem 1.2rem; cursor: pointer; font-family: 'Cinzel', serif; font-size: .65rem; text-transform: uppercase; transition: .3s; text-decoration: none; }
         .share-btn:hover { background: var(--gold); color: var(--bg-deep); }
         .related { margin-top: 4rem; }
         .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
@@ -91,7 +91,7 @@
         <h3 style="color:var(--gold); margin-bottom:1rem;">Articles similaires</h3>
         <div class="related-grid" id="relatedGrid"></div>
     </div>
-    <footer>© 2026 Majesté Togbé Yédy</footer>
+    <footer>© 2026 Majesté Togbé Yédy — Patrice Hounsa</footer>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -142,16 +142,22 @@
                 document.getElementById('articleContent').innerHTML = html;
                 document.getElementById('articleContent').style.display = 'block';
                 loadRelated(a.categorie, id);
-            } catch(e) {
+            } catch (e) {
                 document.getElementById('loading').innerHTML = '<p>Erreur de chargement.</p>';
             }
         }
 
         async function loadRelated(cat, excludeId) {
             if (!cat) return;
-            const q = query(collection(db, 'actualites'), where('publie', '==', true), where('categorie', '==', cat), orderBy('date', 'desc'), limit(4));
+            const q = query(
+                collection(db, 'actualites'),
+                where('publie', '==', true),
+                where('categorie', '==', cat),
+                orderBy('date', 'desc'),
+                limit(4)
+            );
             const snap = await getDocs(q);
-            const articles = snap.docs.map(d => ({id: d.id, ...d.data()})).filter(a => a.id !== excludeId).slice(0,3);
+            const articles = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(a => a.id !== excludeId).slice(0,3);
             if (articles.length === 0) return;
             document.getElementById('relatedSection').style.display = 'block';
             document.getElementById('relatedGrid').innerHTML = articles.map(a => `
