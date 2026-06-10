@@ -38,23 +38,23 @@
         .hero { padding: calc(var(--nav-h) + 3rem) 5% 3rem; background: linear-gradient(135deg, #0e0b06 0%, #1a130a 50%, #0e0b06 100%); text-align: center; }
         .hero h1 { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 5vw, 4rem); background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
         .hero p { color: var(--text-muted); font-style: italic; }
-        .filters-bar { background: var(--bg-dark); padding: 1rem 5%; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; border-bottom: 1px solid rgba(201,168,76,.25); position: sticky; top: var(--nav-h); z-index: 50; }
-        .filter-btn { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; padding: .45rem 1rem; border: 1px solid rgba(201,168,76,.3); background: transparent; color: var(--text-muted); cursor: pointer; transition: all .3s; }
-        .filter-btn:hover, .filter-btn.active { background: var(--gold); color: var(--bg-deep); border-color: var(--gold); }
-        .search-wrap { margin-left: auto; position: relative; }
-        .search-input { padding: .4rem 1rem .4rem 2.2rem; border: 1px solid rgba(201,168,76,.3); background: rgba(255,255,255,.05); color: var(--cream); outline: none; width: 200px; font-family: 'EB Garamond', serif; }
-        .search-icon { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
-        .container { max-width: 1200px; margin: 2rem auto; padding: 0 5%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
-        .card { background: var(--bg-card); border: 1px solid rgba(201,168,76,.12); border-radius: 6px; overflow: hidden; transition: all .3s; cursor: pointer; }
-        .card:hover { transform: translateY(-5px); border-color: var(--gold); }
-        .card-img { width: 100%; height: 200px; object-fit: cover; }
-        .card-img-placeholder { width: 100%; height: 200px; background: rgba(201,168,76,.05); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
-        .card-body { padding: 1.2rem; }
-        .card-cat { display: inline-block; padding: .15rem .6rem; font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--bg-deep); background: var(--gold); margin-bottom: .6rem; }
-        .card-title { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-light); margin-bottom: .5rem; }
-        .card-date { font-size: .7rem; color: var(--text-muted); }
-        .card-excerpt { color: rgba(245,236,215,.7); font-size: .9rem; line-height: 1.6; }
+        .barre-filtres { background: var(--bg-dark); padding: 1rem 5%; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; border-bottom: 1px solid rgba(201,168,76,.25); position: sticky; top: var(--nav-h); z-index: 50; }
+        .bouton-filtre { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; padding: .45rem 1rem; border: 1px solid rgba(201,168,76,.3); background: transparent; color: var(--text-muted); cursor: pointer; transition: all .3s; }
+        .bouton-filtre:hover, .bouton-filtre.active { background: var(--gold); color: var(--bg-deep); border-color: var(--gold); }
+        .recherche { margin-left: auto; position: relative; }
+        .champ-recherche { padding: .4rem 1rem .4rem 2.2rem; border: 1px solid rgba(201,168,76,.3); background: rgba(255,255,255,.05); color: var(--cream); outline: none; width: 200px; font-family: 'EB Garamond', serif; }
+        .icone-recherche { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .conteneur { max-width: 1200px; margin: 2rem auto; padding: 0 5%; }
+        .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
+        .carte { background: var(--bg-card); border: 1px solid rgba(201,168,76,.12); border-radius: 6px; overflow: hidden; transition: all .3s; cursor: pointer; }
+        .carte:hover { transform: translateY(-5px); border-color: var(--gold); }
+        .carte-image { width: 100%; height: 220px; object-fit: contain; background: #0a0805; }
+        .carte-placeholder { width: 100%; height: 220px; background: rgba(201,168,76,.05); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--text-muted); }
+        .carte-corps { padding: 1.2rem; }
+        .carte-categorie { display: inline-block; padding: .15rem .6rem; font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--bg-deep); background: var(--gold); margin-bottom: .6rem; }
+        .carte-titre { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-light); margin-bottom: .5rem; }
+        .carte-date { font-size: .7rem; color: var(--text-muted); }
+        .carte-extrait { color: rgba(245,236,215,.7); font-size: .9rem; line-height: 1.6; }
         .pagination { display: flex; justify-content: center; gap: .5rem; margin-top: 2rem; }
         .page-btn { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(201,168,76,.2); background: transparent; color: var(--text-muted); cursor: pointer; transition: .3s; }
         .page-btn.active, .page-btn:hover { background: var(--gold); color: var(--bg-deep); border-color: var(--gold); }
@@ -63,7 +63,7 @@
         footer { background: #050402; border-top: 1px solid rgba(201,168,76,.15); padding: 2.5rem 5%; text-align: center; margin-top: 3rem; }
         .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0; }
         .footer-nav a { font-family: 'Cinzel', serif; font-size: .62rem; color: var(--text-muted); text-transform: uppercase; text-decoration: none; }
-        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .filter-btn { font-size: .55rem; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .bouton-filtre { font-size: .55rem; } }
     </style>
 </head>
 <body>
@@ -80,21 +80,21 @@
 
     <div class="hero"><h1>Actualités</h1><p>Suivez l'actualité spirituelle et publique de Sa Majesté Togbé Yédy</p></div>
 
-    <div class="filters-bar">
-        <button class="filter-btn active" data-cat="all">Tous</button>
-        <button class="filter-btn" data-cat="Spiritualité">Spiritualité</button>
-        <button class="filter-btn" data-cat="Événements">Événements</button>
-        <button class="filter-btn" data-cat="Distinction">Distinction</button>
-        <button class="filter-btn" data-cat="Culture">Culture</button>
-        <button class="filter-btn" data-cat="Médias">Médias</button>
-        <button class="filter-btn" data-cat="Gouvernement">Gouvernement</button>
-        <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="Rechercher..."></div>
+    <div class="barre-filtres">
+        <button class="bouton-filtre active" data-cat="all">Tous</button>
+        <button class="bouton-filtre" data-cat="Spiritualité">Spiritualité</button>
+        <button class="bouton-filtre" data-cat="Événements">Événements</button>
+        <button class="bouton-filtre" data-cat="Distinction">Distinction</button>
+        <button class="bouton-filtre" data-cat="Culture">Culture</button>
+        <button class="bouton-filtre" data-cat="Médias">Médias</button>
+        <button class="bouton-filtre" data-cat="Gouvernement">Gouvernement</button>
+        <div class="recherche"><span class="icone-recherche">🔍</span><input type="text" class="champ-recherche" id="champRecherche" placeholder="Rechercher..."></div>
     </div>
 
-    <div class="container">
-        <div id="loading" style="text-align:center;"><div class="spinner"></div></div>
-        <div id="articlesGrid" class="grid" style="display:none;"></div>
-        <div id="empty" style="display:none; text-align:center; padding:3rem; color:var(--text-muted);">Aucune actualité trouvée.</div>
+    <div class="conteneur">
+        <div id="chargement" style="text-align:center;"><div class="spinner"></div></div>
+        <div id="grilleArticles" class="grille" style="display:none;"></div>
+        <div id="vide" style="display:none; text-align:center; padding:3rem; color:var(--text-muted);">Aucune actualité trouvée.</div>
         <div id="pagination" class="pagination"></div>
     </div>
 
@@ -111,7 +111,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-        const firebaseConfig = {
+        const configFirebase = {
             apiKey: "AIzaSyDkAX4UdiuUyfR3c5_E7qPG6xpCtWr3FYw",
             authDomain: "togbeyedy-49129.firebaseapp.com",
             projectId: "togbeyedy-49129",
@@ -119,106 +119,111 @@
             messagingSenderId: "895068990371",
             appId: "1:895068990371:web:d9c918d6b588a6b4338816"
         };
-        const app = initializeApp(firebaseConfig);
+        const app = initializeApp(configFirebase);
         const db = getFirestore(app);
 
-        let all = [], filtered = [], page = 1, perPage = 6, cat = 'all', search = '';
+        let tous = [], filtres = [], page = 1, parPage = 6, categorie = 'all', recherche = '';
 
-        function fmtDate(ts) {
+        function formaterDate(ts) {
             if (!ts) return '';
             const d = ts.toDate ? ts.toDate() : new Date(ts);
             return d.toLocaleDateString('fr-FR', { day:'2-digit', month:'long', year:'numeric' });
         }
 
-        function excerpt(html, len=100) {
+        function extrait(html, longueur=100) {
             const div = document.createElement('div');
             div.innerHTML = html;
-            const text = div.textContent || '';
-            return text.length > len ? text.slice(0, len) + '…' : text;
+            const texte = div.textContent || '';
+            return texte.length > longueur ? texte.slice(0, longueur) + '…' : texte;
         }
 
-        function renderCard(a) {
+        function carteHTML(a) {
+            const imageHTML = a.imageUrl
+                ? `<img class="carte-image" src="${a.imageUrl}" alt="${a.titre}">`
+                : `<div class="carte-placeholder">📷</div>`;
             return `
-            <div class="card" onclick="location.href='article.html?id=${a.id}'">
-                ${a.imageUrl ? `<img class="card-img" src="${a.imageUrl}" alt="${a.titre}">` : `<div class="card-img-placeholder">📷</div>`}
-                <div class="card-body">
-                    <span class="card-cat">${a.categorie || ''}</span>
-                    <h3 class="card-title">${a.titre}</h3>
-                    <p class="card-date">📅 ${fmtDate(a.date)}</p>
-                    <p class="card-excerpt">${excerpt(a.contenu)}</p>
+            <div class="carte" onclick="location.href='article.html?id=${a.id}'">
+                ${imageHTML}
+                <div class="carte-corps">
+                    <span class="carte-categorie">${a.categorie || ''}</span>
+                    <h3 class="carte-titre">${a.titre}</h3>
+                    <p class="carte-date">📅 ${formaterDate(a.date)}</p>
+                    <p class="carte-extrait">${extrait(a.contenu)}</p>
                 </div>
             </div>`;
         }
 
-        function render() {
-            const grid = document.getElementById('articlesGrid');
-            const empty = document.getElementById('empty');
-            const loading = document.getElementById('loading');
-            loading.style.display = 'none';
-            if (filtered.length === 0) {
-                grid.style.display = 'none';
-                empty.style.display = 'block';
+        function afficher() {
+            const grille = document.getElementById('grilleArticles');
+            const vide = document.getElementById('vide');
+            const chargement = document.getElementById('chargement');
+            chargement.style.display = 'none';
+            if (filtres.length === 0) {
+                grille.style.display = 'none';
+                vide.style.display = 'block';
             } else {
-                empty.style.display = 'none';
-                grid.style.display = 'grid';
-                const start = (page - 1) * perPage;
-                const slice = filtered.slice(start, start + perPage);
-                grid.innerHTML = slice.map(renderCard).join('');
-                renderPagination();
+                vide.style.display = 'none';
+                grille.style.display = 'grid';
+                const debut = (page - 1) * parPage;
+                const tranche = filtres.slice(debut, debut + parPage);
+                grille.innerHTML = tranche.map(carteHTML).join('');
+                afficherPagination();
             }
         }
 
-        function renderPagination() {
-            const total = Math.ceil(filtered.length / perPage);
+        function afficherPagination() {
+            const total = Math.ceil(filtres.length / parPage);
             const pag = document.getElementById('pagination');
             if (total <= 1) { pag.innerHTML = ''; return; }
-            pag.innerHTML = Array.from({length: total}, (_, i) => `<div class="page-btn${i+1 === page ? ' active' : ''}" data-p="${i+1}">${i+1}</div>`).join('');
+            pag.innerHTML = Array.from({length: total}, (_, i) =>
+                `<div class="page-btn${i+1 === page ? ' active' : ''}" data-p="${i+1}">${i+1}</div>`
+            ).join('');
             document.querySelectorAll('.page-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     page = parseInt(e.target.dataset.p);
-                    render();
+                    afficher();
                     window.scrollTo({ top: 300, behavior: 'smooth' });
                 });
             });
         }
 
-        function apply() {
-            filtered = all.filter(a => {
+        function appliquerFiltres() {
+            filtres = tous.filter(a => {
                 if (!a.publie) return false;
-                if (cat !== 'all' && a.categorie !== cat) return false;
-                if (search && !a.titre.toLowerCase().includes(search) && !excerpt(a.contenu).toLowerCase().includes(search)) return false;
+                if (categorie !== 'all' && a.categorie !== categorie) return false;
+                if (recherche && !a.titre.toLowerCase().includes(recherche) && !extrait(a.contenu).toLowerCase().includes(recherche)) return false;
                 return true;
             });
             page = 1;
-            render();
+            afficher();
         }
 
-        async function load() {
+        async function charger() {
             try {
                 const q = query(collection(db, 'Actualités'), orderBy('date', 'desc'));
-                const snap = await getDocs(q);
-                all = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-                apply();
+                const snapshot = await getDocs(q);
+                tous = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+                appliquerFiltres();
             } catch (e) {
-                document.getElementById('loading').innerHTML = '<p style="color:red;">Erreur de chargement : ' + e.message + '</p>';
+                document.getElementById('chargement').innerHTML = '<p style="color:red;">Erreur de chargement : ' + e.message + '</p>';
                 console.error(e);
             }
         }
 
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        document.querySelectorAll('.bouton-filtre').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.bouton-filtre').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                cat = btn.dataset.cat;
-                apply();
+                categorie = btn.dataset.cat;
+                appliquerFiltres();
             });
         });
-        document.getElementById('searchInput').addEventListener('input', e => {
-            search = e.target.value.toLowerCase().trim();
-            apply();
+        document.getElementById('champRecherche').addEventListener('input', e => {
+            recherche = e.target.value.toLowerCase().trim();
+            appliquerFiltres();
         });
 
-        load();
+        charger();
     </script>
 
     <script>
