@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article — Majesté Togbé Yédy</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.togbeyedy.com/article.html" />
+    <meta property="og:title" content="Article — Majesté Togbé Yédy" />
+    <meta property="og:image" content="https://www.togbeyedy.com/to1.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --gold: #C9A84C; --gold-light: #F0D080; --gold-dark: #8B6914;
+            --bg-deep: #080604; --bg-dark: #100D08; --bg-card: #181210;
+            --cream: #F5ECD7; --text-muted: #9E8A6A;
+            --nav-h: 60px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg-deep); color: var(--cream); font-family: 'EB Garamond', serif; overflow-x: hidden; }
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: .85rem 5%; background: rgba(8,6,4,.88);
+            backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,168,76,.18);
+        }
+        .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: .9rem; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+        .nav-links a { font-family: 'Cinzel', serif; font-size: .67rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { width: 26px; height: 2px; background: var(--gold); display: block; }
+        .nav-mobile { display: none; position: fixed; top: 60px; inset-inline: 0; bottom: 0; background: rgba(8,6,4,.98); z-index: 190; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a { font-family: 'Cinzel', serif; color: var(--cream); text-decoration: none; }
+
+        .article-wrap { max-width: 800px; margin: calc(var(--nav-h) + 2rem) auto 3rem; padding: 0 5%; }
+        .cover-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 6px; margin-bottom: 1.5rem; }
+        .breadcrumb { font-size: .7rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .breadcrumb a { color: var(--gold); text-decoration: none; }
+        .cat-badge { display: inline-block; background: var(--gold); color: var(--bg-deep); padding: .2rem .8rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+        .title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem, 4vw, 3rem); background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+        .meta { display: flex; gap: 1.5rem; color: var(--text-muted); font-size: .8rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(201,168,76,.15); padding-bottom: 1rem; }
+        .content { font-size: 1.05rem; line-height: 1.9; color: rgba(245,236,215,.85); }
+        .content h2, .content h3 { color: var(--gold-light); margin: 1.5rem 0 .8rem; }
+        .share-bar { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(201,168,76,.15); display: flex; gap: 1rem; flex-wrap: wrap; }
+        .share-btn { background: transparent; border: 1px solid rgba(201,168,76,.3); color: var(--gold); padding: .5rem 1.2rem; cursor: pointer; font-family: 'Cinzel', serif; font-size: .65rem; text-transform: uppercase; transition: .3s; }
+        .share-btn:hover { background: var(--gold); color: var(--bg-deep); }
+        .related { margin-top: 4rem; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .related-card { background: var(--bg-card); border: 1px solid rgba(201,168,76,.12); cursor: pointer; padding: 1rem; transition: .3s; }
+        .related-card:hover { border-color: var(--gold); }
+        .spinner { width: 40px; height: 40px; border: 3px solid rgba(201,168,76,.2); border-top-color: var(--gold); border-radius: 50%; animation: spin .8s linear infinite; margin: 2rem auto; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        footer { background: #050402; padding: 2rem 5%; text-align: center; margin-top: 3rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">✦ Togbé Yédy</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="decouverte.html">Découverte</a></li>
+            <li><a href="vodun.html">Vodun</a></li>
+            <li><a href="festivals.html">Festivals</a></li>
+            <li><a href="guerison.html">Guérisons</a></li>
+            <li><a href="gouvernement.html">Gouvernement</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="actualites.html" class="active">Actualités</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="nav-mobile" id="nav-mobile">
+        <a href="index.html">Accueil</a>
+        <a href="decouverte.html">Découverte</a>
+        <a href="vodun.html">Vodun</a>
+        <a href="festivals.html">Festivals</a>
+        <a href="guerison.html">Guérisons</a>
+        <a href="gouvernement.html">Gouvernement</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="contact.html">Contact</a>
+        <a href="actualites.html">Actualités</a>
+    </div>
+
+    <div class="article-wrap" id="articleWrap">
+        <div style="text-align:center;" id="loading"><div class="spinner"></div></div>
+        <div id="articleContent" style="display:none;"></div>
+    </div>
+    <div class="related" id="relatedSection" style="display:none;">
+        <h3 style="color:var(--gold); margin-bottom:1rem;">Articles similaires</h3>
+        <div class="related-grid" id="relatedGrid"></div>
+    </div>
+    <footer>© 2026 Majesté Togbé Yédy</footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, collection, query, where, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDkAX4UdiuUyfR3c5_E7qPG6xpCtWr3FYw",
+            authDomain: "togbeyedy-49129.firebaseapp.com",
+            projectId: "togbeyedy-49129",
+            storageBucket: "togbeyedy-49129.firebasestorage.app",
+            messagingSenderId: "895068990371",
+            appId: "1:895068990371:web:d9c918d6b588a6b4338816"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const id = new URLSearchParams(window.location.search).get('id');
+        if (!id) window.location.href = 'actualites.html';
+
+        function fmtDate(ts) {
+            if (!ts) return '';
+            const d = ts.toDate ? ts.toDate() : new Date(ts);
+            return d.toLocaleDateString('fr-FR', { day:'2-digit', month:'long', year:'numeric' });
+        }
+
+        async function loadArticle() {
+            try {
+                const snap = await getDoc(doc(db, 'actualites', id));
+                if (!snap.exists() || !snap.data().publie) {
+                    window.location.href = 'actualites.html';
+                    return;
+                }
+                const a = snap.data();
+                document.title = a.titre + ' — Majesté Togbé Yédy';
+                const html = `
+                    ${a.imageUrl ? `<img class="cover-img" src="${a.imageUrl}" alt="${a.titre}">` : ''}
+                    <div class="breadcrumb"><a href="index.html">Accueil</a> › <a href="actualites.html">Actualités</a> › ${a.categorie||''}</div>
+                    <span class="cat-badge">${a.categorie||''}</span>
+                    <h1 class="title">${a.titre}</h1>
+                    <div class="meta"><span>📅 ${fmtDate(a.date)}</span><span>✍️ ${a.auteur||'Togbé Yédy'}</span></div>
+                    <div class="content">${a.contenu}</div>
+                    <div class="share-bar">
+                        <button class="share-btn" onclick="navigator.share&&navigator.share({title:'${a.titre}',url:window.location.href})">📤 Partager</button>
+                        <a class="share-btn" href="https://wa.me/?text=${encodeURIComponent(a.titre+' '+window.location.href)}" target="_blank">WhatsApp</a>
+                    </div>
+                `;
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('articleContent').innerHTML = html;
+                document.getElementById('articleContent').style.display = 'block';
+                loadRelated(a.categorie, id);
+            } catch(e) {
+                document.getElementById('loading').innerHTML = '<p>Erreur de chargement.</p>';
+            }
+        }
+
+        async function loadRelated(cat, excludeId) {
+            if (!cat) return;
+            const q = query(collection(db, 'actualites'), where('publie', '==', true), where('categorie', '==', cat), orderBy('date', 'desc'), limit(4));
+            const snap = await getDocs(q);
+            const articles = snap.docs.map(d => ({id: d.id, ...d.data()})).filter(a => a.id !== excludeId).slice(0,3);
+            if (articles.length === 0) return;
+            document.getElementById('relatedSection').style.display = 'block';
+            document.getElementById('relatedGrid').innerHTML = articles.map(a => `
+                <div class="related-card" onclick="location.href='article.html?id=${a.id}'">
+                    <strong style="color:var(--gold-light);">${a.titre}</strong>
+                    <p style="font-size:.8rem; color:var(--text-muted);">${fmtDate(a.date)}</p>
+                </div>
+            `).join('');
+        }
+
+        loadArticle();
+    </script>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMobile = document.getElementById('nav-mobile');
+        hamburger.addEventListener('click', () => {
+            navMobile.classList.toggle('open');
+            hamburger.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => {
+            navMobile.classList.remove('open');
+            hamburger.classList.remove('active');
+        }));
+    </script>
+</body>
+</html>
