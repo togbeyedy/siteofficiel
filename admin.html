@@ -15,7 +15,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--fb-bg); color: var(--fb-dark); min-height: 100vh; }
 
-        /* ÉCRAN DE CONNEXION */
         #ecranConnexion {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
             background: linear-gradient(135deg, #e2e8f0 0%, #d0d8e8 100%);
@@ -31,7 +30,6 @@
         .bouton-connexion:hover { background: var(--fb-blue-hover); }
         .erreur-connexion { color: var(--fb-danger); font-size: 0.8rem; margin-top: 0.8rem; display: none; }
 
-        /* ÉCRAN D'ADMINISTRATION */
         #ecranAdmin { display: none; }
         .en-tete-admin { background: var(--fb-white); padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
         .marque-admin { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold); display: flex; align-items: center; gap: 0.5rem; }
@@ -85,8 +83,8 @@
         <div class="logo-connexion">✦ Administration</div>
         <p class="sous-titre-connexion">Majesté Togbé Yédy — Patrice Hounsa</p>
         <div class="champ-connexion"><label>Identifiant</label><input type="text" id="identifiant" placeholder="Votre identifiant"></div>
-        <div class="champ-connexion"><label>Mot de passe</label><input type="password" id="motdepasse" placeholder="••••••" onkeydown="if(event.key==='Enter')connexion()"></div>
-        <button class="bouton-connexion" onclick="connexion()">Connexion</button>
+        <div class="champ-connexion"><label>Mot de passe</label><input type="password" id="motdepasse" placeholder="••••••"></div>
+        <button class="bouton-connexion" id="boutonConnexion">Connexion</button>
         <p class="erreur-connexion" id="erreurConnexion">Identifiants incorrects.</p>
     </div>
 </div>
@@ -95,10 +93,9 @@
 <div id="ecranAdmin">
     <div class="en-tete-admin">
         <div class="marque-admin">✦ Togbé Yédy <span>— Gestion des actualités</span></div>
-        <button class="bouton-deconnexion" onclick="deconnexion()">Déconnexion</button>
+        <button class="bouton-deconnexion" id="boutonDeconnexion">Déconnexion</button>
     </div>
     <div class="corps-admin">
-        <!-- Formulaire -->
         <div class="carte">
             <h2 id="titreFormulaire">✍️ Nouvelle actualité</h2>
             <div class="ligne-formulaire">
@@ -122,8 +119,8 @@
             <div class="groupe-formulaire">
                 <label>Image (URL) — optionnel</label>
                 <div style="display:flex; gap:0.5rem;">
-                    <input type="text" id="champImage" placeholder="https://..." oninput="apercuImage(this.value)" style="flex:1;">
-                    <button type="button" onclick="window.open('https://postimages.org/fr/', '_blank')" style="background:var(--fb-blue); color:white; border:none; padding:0 1rem; border-radius:6px; font-size:0.8rem; cursor:pointer;">📸 PostImage</button>
+                    <input type="text" id="champImage" placeholder="https://..." style="flex:1;">
+                    <button type="button" id="boutonPostImage" style="background:var(--fb-blue); color:white; border:none; padding:0 1rem; border-radius:6px; font-size:0.8rem; cursor:pointer;">📸 PostImage</button>
                 </div>
                 <img id="imageApercu" class="apercu-image" alt="Aperçu de l'image">
             </div>
@@ -134,25 +131,24 @@
             <div class="groupe-formulaire">
                 <label>Contenu *</label>
                 <div class="barre-outils">
-                    <button class="bouton-outil" onclick="formatage('bold')"><b>G</b></button>
-                    <button class="bouton-outil" onclick="formatage('italic')"><i>I</i></button>
-                    <button class="bouton-outil" onclick="formatage('underline')"><u>S</u></button>
-                    <button class="bouton-outil" onclick="formatageBloc('h2')">Titre 2</button>
-                    <button class="bouton-outil" onclick="formatageBloc('h3')">Titre 3</button>
-                    <button class="bouton-outil" onclick="formatage('insertUnorderedList')">• Liste</button>
-                    <button class="bouton-outil" onclick="formatage('insertOrderedList')">1. Liste</button>
+                    <button class="bouton-outil" id="outilGras"><b>G</b></button>
+                    <button class="bouton-outil" id="outilItalique"><i>I</i></button>
+                    <button class="bouton-outil" id="outilSouligne"><u>S</u></button>
+                    <button class="bouton-outil" id="outilTitre2">Titre 2</button>
+                    <button class="bouton-outil" id="outilTitre3">Titre 3</button>
+                    <button class="bouton-outil" id="outilListe">• Liste</button>
+                    <button class="bouton-outil" id="outilListeNum">1. Liste</button>
                 </div>
                 <div id="zoneEditeur" contenteditable="true"></div>
             </div>
             <div class="actions">
-                <button class="bouton bouton-publier" onclick="enregistrerArticle(true)">📢 Publier</button>
-                <button class="bouton bouton-brouillon" onclick="enregistrerArticle(false)">💾 Brouillon</button>
-                <button class="bouton bouton-effacer" onclick="reinitialiserFormulaire()">🗑️ Effacer</button>
+                <button class="bouton bouton-publier" id="boutonPublier">📢 Publier</button>
+                <button class="bouton bouton-brouillon" id="boutonBrouillon">💾 Brouillon</button>
+                <button class="bouton bouton-effacer" id="boutonEffacer">🗑️ Effacer</button>
             </div>
             <div class="message-formulaire" id="messageFormulaire"></div>
         </div>
 
-        <!-- Liste des articles -->
         <div>
             <div class="carte">
                 <h2>📰 Mes actualités</h2>
@@ -167,7 +163,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, getDocs, getDoc, query, orderBy, Timestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // Configuration Firebase
     const configFirebase = {
         apiKey: "AIzaSyDkAX4UdiuUyfR3c5_E7qPG6xpCtWr3FYw",
         authDomain: "togbeyedy-49129.firebaseapp.com",
@@ -184,91 +179,126 @@
     const CLE_SESSION = "togbeyedy_admin_connecte";
     let idEnCours = null;
 
-    // ---------- GESTION DE LA SESSION ----------
+    // Éléments du DOM
+    const ecranConnexion = document.getElementById('ecranConnexion');
+    const ecranAdmin = document.getElementById('ecranAdmin');
+    const inputIdentifiant = document.getElementById('identifiant');
+    const inputMotdepasse = document.getElementById('motdepasse');
+    const boutonConnexion = document.getElementById('boutonConnexion');
+    const boutonDeconnexion = document.getElementById('boutonDeconnexion');
+    const erreurConnexion = document.getElementById('erreurConnexion');
+    const champTitre = document.getElementById('champTitre');
+    const champCategorie = document.getElementById('champCategorie');
+    const zoneEditeur = document.getElementById('zoneEditeur');
+    const champImage = document.getElementById('champImage');
+    const champVideo = document.getElementById('champVideo');
+    const imageApercu = document.getElementById('imageApercu');
+    const titreFormulaire = document.getElementById('titreFormulaire');
+    const messageFormulaire = document.getElementById('messageFormulaire');
+    const listeArticles = document.getElementById('listeArticles');
+    const notification = document.getElementById('notification');
+    const boutonPublier = document.getElementById('boutonPublier');
+    const boutonBrouillon = document.getElementById('boutonBrouillon');
+    const boutonEffacer = document.getElementById('boutonEffacer');
+    const boutonPostImage = document.getElementById('boutonPostImage');
+
+    // Fonctions de session
     function estConnecte() {
         return localStorage.getItem(CLE_SESSION) === "oui";
     }
-
     function connecter() {
         localStorage.setItem(CLE_SESSION, "oui");
     }
-
     function seDeconnecter() {
         localStorage.removeItem(CLE_SESSION);
     }
 
-    // Au chargement, vérifier si une session existe
+    // Initialisation : afficher l'écran approprié
     if (estConnecte()) {
-        // L'utilisateur est déjà connecté → afficher directement l'admin
-        document.getElementById('ecranConnexion').style.display = 'none';
-        document.getElementById('ecranAdmin').style.display = 'block';
+        ecranConnexion.style.display = 'none';
+        ecranAdmin.style.display = 'block';
         chargerListe();
     } else {
-        // Afficher l'écran de connexion
-        document.getElementById('ecranConnexion').style.display = 'flex';
-        document.getElementById('ecranAdmin').style.display = 'none';
+        ecranConnexion.style.display = 'flex';
+        ecranAdmin.style.display = 'none';
     }
 
     // Connexion
-    window.connexion = () => {
-        const u = document.getElementById('identifiant').value.trim();
-        const p = document.getElementById('motdepasse').value;
+    boutonConnexion.addEventListener('click', () => {
+        const u = inputIdentifiant.value.trim();
+        const p = inputMotdepasse.value;
         if (u === UTILISATEUR_ADMIN && p === MOTDEPASSE_ADMIN) {
-            connecter(); // Mémoriser la session
-            document.getElementById('ecranConnexion').style.display = 'none';
-            document.getElementById('ecranAdmin').style.display = 'block';
+            connecter();
+            ecranConnexion.style.display = 'none';
+            ecranAdmin.style.display = 'block';
             chargerListe();
+            inputIdentifiant.value = '';
+            inputMotdepasse.value = '';
+            erreurConnexion.style.display = 'none';
         } else {
-            const err = document.getElementById('erreurConnexion');
-            err.style.display = 'block';
-            setTimeout(() => err.style.display = 'none', 3000);
+            erreurConnexion.style.display = 'block';
+            setTimeout(() => erreurConnexion.style.display = 'none', 3000);
         }
-    };
+    });
+
+    // Touche Entrée sur le mot de passe
+    inputMotdepasse.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') boutonConnexion.click();
+    });
 
     // Déconnexion
-    window.deconnexion = () => {
+    boutonDeconnexion.addEventListener('click', () => {
         seDeconnecter();
-        document.getElementById('ecranAdmin').style.display = 'none';
-        document.getElementById('ecranConnexion').style.display = 'flex';
-        // Effacer les champs de connexion
-        document.getElementById('identifiant').value = '';
-        document.getElementById('motdepasse').value = '';
-    };
+        ecranAdmin.style.display = 'none';
+        ecranConnexion.style.display = 'flex';
+        inputIdentifiant.value = '';
+        inputMotdepasse.value = '';
+        // Réinitialiser le formulaire au cas où
+        reinitialiserFormulaire();
+        console.log('Déconnexion réussie.');
+    });
 
     // Réinitialiser le formulaire
-    window.reinitialiserFormulaire = () => {
+    function reinitialiserFormulaire() {
         idEnCours = null;
-        document.getElementById('champTitre').value = '';
-        document.getElementById('champCategorie').value = '';
-        document.getElementById('zoneEditeur').innerHTML = '';
-        document.getElementById('champImage').value = '';
-        document.getElementById('champVideo').value = '';
-        document.getElementById('imageApercu').style.display = 'none';
-        document.getElementById('titreFormulaire').textContent = '✍️ Nouvelle actualité';
-        document.getElementById('messageFormulaire').style.display = 'none';
-    };
+        champTitre.value = '';
+        champCategorie.value = '';
+        zoneEditeur.innerHTML = '';
+        champImage.value = '';
+        champVideo.value = '';
+        imageApercu.style.display = 'none';
+        titreFormulaire.textContent = '✍️ Nouvelle actualité';
+        messageFormulaire.style.display = 'none';
+    }
+    boutonEffacer.addEventListener('click', reinitialiserFormulaire);
 
-    window.apercuImage = (url) => {
-        const img = document.getElementById('imageApercu');
+    // Aperçu image
+    champImage.addEventListener('input', () => {
+        const url = champImage.value.trim();
         if (!url || !url.startsWith('http')) {
-            img.style.display = 'none';
+            imageApercu.style.display = 'none';
             return;
         }
-        img.src = url;
-        img.style.display = 'block';
-    };
+        imageApercu.src = url;
+        imageApercu.style.display = 'block';
+    });
 
-    // Enregistrer (création ou modification)
-    window.enregistrerArticle = async (publie) => {
-        const titre = document.getElementById('champTitre').value.trim();
-        const categorie = document.getElementById('champCategorie').value;
-        const contenu = document.getElementById('zoneEditeur').innerHTML.trim();
+    // Bouton PostImage
+    boutonPostImage.addEventListener('click', () => {
+        window.open('https://postimages.org/fr/', '_blank');
+    });
+
+    // Enregistrer article
+    async function enregistrerArticle(publie) {
+        const titre = champTitre.value.trim();
+        const categorie = champCategorie.value;
+        const contenu = zoneEditeur.innerHTML.trim();
         if (!titre || !categorie || !contenu || contenu === '<br>') {
             afficherMessage('Veuillez remplir tous les champs obligatoires.', 'erreur');
             return;
         }
-        const imageUrl = document.getElementById('champImage').value.trim() || null;
-        const videoUrl = document.getElementById('champVideo').value.trim() || null;
+        const imageUrl = champImage.value.trim() || null;
+        const videoUrl = champVideo.value.trim() || null;
         const maintenant = Timestamp.now();
         const donnees = {
             titre,
@@ -295,21 +325,22 @@
             console.error(erreur);
             afficherMessage('Erreur : ' + erreur.message, 'erreur');
         }
-    };
+    }
+    boutonPublier.addEventListener('click', () => enregistrerArticle(true));
+    boutonBrouillon.addEventListener('click', () => enregistrerArticle(false));
 
-    // Charger la liste des articles
-    window.chargerListe = async () => {
-        const elementListe = document.getElementById('listeArticles');
-        elementListe.innerHTML = '<p>Chargement...</p>';
+    // Charger liste des articles
+    async function chargerListe() {
+        listeArticles.innerHTML = '<p>Chargement...</p>';
         try {
             const q = query(collection(db, 'Actualités'), orderBy('date', 'desc'));
             const snapshot = await getDocs(q);
             const articles = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
             if (articles.length === 0) {
-                elementListe.innerHTML = '<p>Aucun article pour le moment.</p>';
+                listeArticles.innerHTML = '<p>Aucun article pour le moment.</p>';
                 return;
             }
-            elementListe.innerHTML = articles.map(a => `
+            listeArticles.innerHTML = articles.map(a => `
                 <div class="article-item">
                     <div class="article-infos">
                         <strong>${a.titre}</strong>
@@ -319,20 +350,31 @@
                         </div>
                     </div>
                     <div class="article-boutons">
-                        <button class="mini-bouton" onclick="editerArticle('${a.id}')">✏️</button>
-                        <button class="mini-bouton" onclick="changerStatut('${a.id}', ${a.publie})">${a.publie ? '🔒' : '🌐'}</button>
-                        <button class="mini-bouton supprimer" onclick="supprimerArticle('${a.id}')">🗑️</button>
+                        <button class="mini-bouton editer" data-id="${a.id}">✏️</button>
+                        <button class="mini-bouton statut" data-id="${a.id}" data-publie="${a.publie}">${a.publie ? '🔒' : '🌐'}</button>
+                        <button class="mini-bouton supprimer" data-id="${a.id}">🗑️</button>
                     </div>
                 </div>
             `).join('');
+
+            // Attacher les événements aux mini-boutons
+            document.querySelectorAll('.mini-bouton.editer').forEach(btn => {
+                btn.addEventListener('click', () => editerArticle(btn.dataset.id));
+            });
+            document.querySelectorAll('.mini-bouton.statut').forEach(btn => {
+                btn.addEventListener('click', () => changerStatut(btn.dataset.id, btn.dataset.publie === 'true'));
+            });
+            document.querySelectorAll('.mini-bouton.supprimer').forEach(btn => {
+                btn.addEventListener('click', () => supprimerArticle(btn.dataset.id));
+            });
         } catch (erreur) {
             console.error(erreur);
-            elementListe.innerHTML = '<p style="color:red;">Erreur de chargement.</p>';
+            listeArticles.innerHTML = '<p style="color:red;">Erreur de chargement.</p>';
         }
-    };
+    }
 
-    // Édition d'un article
-    window.editerArticle = async (id) => {
+    // Éditer article
+    async function editerArticle(id) {
         const docSnap = await getDoc(doc(db, 'Actualités', id));
         if (!docSnap.exists()) {
             notifier("Article introuvable", "erreur");
@@ -340,50 +382,57 @@
         }
         const a = docSnap.data();
         idEnCours = id;
-        document.getElementById('champTitre').value = a.titre || '';
-        document.getElementById('champCategorie').value = a.categorie || '';
-        document.getElementById('zoneEditeur').innerHTML = a.contenu || '';
-        document.getElementById('champImage').value = a.imageUrl || '';
-        document.getElementById('champVideo').value = a.videoUrl || '';
-        if (a.imageUrl) apercuImage(a.imageUrl);
-        else document.getElementById('imageApercu').style.display = 'none';
-        document.getElementById('titreFormulaire').textContent = '✍️ Modifier l\'actualité';
+        champTitre.value = a.titre || '';
+        champCategorie.value = a.categorie || '';
+        zoneEditeur.innerHTML = a.contenu || '';
+        champImage.value = a.imageUrl || '';
+        champVideo.value = a.videoUrl || '';
+        if (a.imageUrl) {
+            imageApercu.src = a.imageUrl;
+            imageApercu.style.display = 'block';
+        } else {
+            imageApercu.style.display = 'none';
+        }
+        titreFormulaire.textContent = '✍️ Modifier l\'actualité';
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+    }
 
-    // Changer le statut de publication
-    window.changerStatut = async (id, statutActuel) => {
+    // Changer statut
+    async function changerStatut(id, statutActuel) {
         await updateDoc(doc(db, 'Actualités', id), { publie: !statutActuel });
         notifier(!statutActuel ? '🌐 Article publié' : '🔒 Article masqué');
         chargerListe();
-    };
+    }
 
-    // Suppression
-    window.supprimerArticle = async (id) => {
+    // Supprimer article
+    async function supprimerArticle(id) {
         if (!confirm('Supprimer définitivement cet article ?')) return;
         await deleteDoc(doc(db, 'Actualités', id));
         notifier('🗑️ Article supprimé');
         chargerListe();
-    };
+    }
 
     // Outils d'édition
-    window.formatage = (commande) => { document.execCommand(commande, false, null); document.getElementById('zoneEditeur').focus(); };
-    window.formatageBloc = (balise) => { document.execCommand('formatBlock', false, '<' + balise + '>'); };
+    document.getElementById('outilGras').addEventListener('click', () => { document.execCommand('bold', false, null); zoneEditeur.focus(); });
+    document.getElementById('outilItalique').addEventListener('click', () => { document.execCommand('italic', false, null); zoneEditeur.focus(); });
+    document.getElementById('outilSouligne').addEventListener('click', () => { document.execCommand('underline', false, null); zoneEditeur.focus(); });
+    document.getElementById('outilTitre2').addEventListener('click', () => { document.execCommand('formatBlock', false, '<h2>'); zoneEditeur.focus(); });
+    document.getElementById('outilTitre3').addEventListener('click', () => { document.execCommand('formatBlock', false, '<h3>'); zoneEditeur.focus(); });
+    document.getElementById('outilListe').addEventListener('click', () => { document.execCommand('insertUnorderedList', false, null); zoneEditeur.focus(); });
+    document.getElementById('outilListeNum').addEventListener('click', () => { document.execCommand('insertOrderedList', false, null); zoneEditeur.focus(); });
 
     // Utilitaires
     function notifier(message, type = '') {
-        const n = document.getElementById('notification');
-        n.textContent = message;
-        n.style.display = 'block';
-        n.style.background = type === 'erreur' ? '#FA383E' : '#42B72A';
-        setTimeout(() => n.style.display = 'none', 3000);
+        notification.textContent = message;
+        notification.style.display = 'block';
+        notification.style.background = type === 'erreur' ? '#FA383E' : '#42B72A';
+        setTimeout(() => notification.style.display = 'none', 3000);
     }
     function afficherMessage(message, type) {
-        const el = document.getElementById('messageFormulaire');
-        el.textContent = message;
-        el.className = 'message-formulaire ' + (type === 'erreur' ? 'erreur' : 'succes');
-        el.style.display = 'block';
-        setTimeout(() => el.style.display = 'none', 4000);
+        messageFormulaire.textContent = message;
+        messageFormulaire.className = 'message-formulaire ' + (type === 'erreur' ? 'erreur' : 'succes');
+        messageFormulaire.style.display = 'block';
+        setTimeout(() => messageFormulaire.style.display = 'none', 4000);
     }
 </script>
 </body>
