@@ -17,70 +17,29 @@
     <meta name="twitter:title" content="Actualités — Majesté Togbé Yédy" />
     <meta name="twitter:description" content="Spiritualité, événements, distinctions, culture : les actualités de Togbé Yédy." />
     <meta name="twitter:image" content="https://www.togbeyedy.com/to1.jpg" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
     <style>
         :root {
-            --blanc: #FFFFFF;
-            --noir: #111111;
-            --rouge: #CC0000;
-            --rouge-fonce: #990000;
-            --bleu: #1A3A5C;
-            --bleu-clair: #2C5F8A;
-            --or: #C9A84C;
-            --or-clair: #E5C471;
-            --gris-clair: #F5F5F5;
-            --gris: #E0E0E0;
-            --gris-fonce: #666666;
-            --whatsapp: #25D366;
-            --nav-h: 70px;
+            --blanc: #FFFFFF; --noir: #111111; --rouge: #CC0000; --rouge-fonce: #990000;
+            --bleu: #1A3A5C; --bleu-clair: #2C5F8A; --gris-clair: #F5F5F5; --gris: #E0E0E0;
+            --gris-fonce: #666666; --whatsapp: #25D366; --nav-h: 70px;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body {
-            background: var(--blanc);
-            color: var(--noir);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
+        body { background: var(--blanc); color: var(--noir); font-family: 'Montserrat', sans-serif; font-size: 16px; overflow-x: hidden; line-height: 1.7; }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--noir); }
-
-        /* Navigation */
-        nav#navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            height: var(--nav-h); padding: 0 5%;
-            display: flex; align-items: center; justify-content: space-between;
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--gris);
-            transition: box-shadow 0.3s;
-        }
+        nav#navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gris); transition: box-shadow 0.3s; }
         nav#navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
-        .nav-logo {
-            font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
-            color: var(--noir); text-decoration: none; letter-spacing: 0.05em;
-            display: flex; align-items: center; gap: 0.5rem;
-        }
+        .nav-logo { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: var(--noir); text-decoration: none; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem; }
         .nav-logo span { color: var(--rouge); }
         .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-        .nav-links a {
-            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
-            text-transform: uppercase; color: var(--noir); text-decoration: none;
-            position: relative; padding-bottom: 4px; transition: color 0.3s;
-        }
+        .nav-links a { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--noir); text-decoration: none; position: relative; padding-bottom: 4px; transition: color 0.3s; }
         .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--rouge); transform: scaleX(0); transition: transform 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--rouge); }
         .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-        .nav-cta {
-            background: var(--rouge) !important; color: var(--blanc) !important;
-            padding: 0.55rem 1.4rem !important; border-radius: 4px !important;
-            transition: background 0.3s !important;
-        }
+        .nav-cta { background: var(--rouge) !important; color: var(--blanc) !important; padding: 0.55rem 1.4rem !important; border-radius: 4px !important; transition: background 0.3s !important; }
         .nav-cta:hover { background: var(--rouge-fonce) !important; }
         .nav-cta::after { display: none !important; }
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1001; }
@@ -88,337 +47,187 @@
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-        .nav-mobile {
-            display: none; position: fixed; top: var(--nav-h); inset-inline: 0; bottom: 0;
-            background: rgba(255,255,255,0.99); z-index: 999; flex-direction: column;
-            align-items: center; justify-content: center; gap: 1.8rem;
-        }
+        .nav-mobile { display: none; position: fixed; top: var(--nav-h); inset-inline: 0; bottom: 0; background: rgba(255,255,255,0.99); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem; }
         .nav-mobile.open { display: flex; }
-        .nav-mobile a {
-            font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700;
-            letter-spacing: 0.15em; text-transform: uppercase; color: var(--noir); text-decoration: none;
-        }
-
-        /* Hero */
-        .hero {
-            padding: calc(var(--nav-h) + 2rem) 5% 2rem;
-            background: var(--gris-clair); text-align: center;
-            border-bottom: 2px solid var(--rouge);
-        }
-        .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem);
-            color: var(--noir); margin-bottom: 0.5rem; font-weight: 900;
-        }
+        .nav-mobile a { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--noir); text-decoration: none; }
+        .hero { padding: calc(var(--nav-h) + 2rem) 5% 2rem; background: var(--gris-clair); text-align: center; border-bottom: 2px solid var(--rouge); }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--noir); margin-bottom: 0.5rem; font-weight: 900; }
         .hero h1 span { color: var(--rouge); }
         .hero p { color: var(--gris-fonce); font-style: italic; font-size: 1.05rem; }
-
-        /* Barre de filtres */
-        .barre-filtres {
-            background: var(--blanc); padding: 1rem 5%; display: flex; flex-wrap: wrap;
-            gap: 0.5rem; align-items: center; border-bottom: 1px solid var(--gris);
-            position: sticky; top: var(--nav-h); z-index: 50;
-        }
-        .bouton-filtre {
-            font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700;
-            letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem;
-            border: 2px solid var(--gris); background: var(--blanc); color: var(--noir);
-            cursor: pointer; transition: all 0.3s; border-radius: 4px;
-        }
-        .bouton-filtre:hover, .bouton-filtre.active {
-            background: var(--rouge); color: var(--blanc); border-color: var(--rouge);
-        }
+        .barre-filtres { background: var(--blanc); padding: 1rem 5%; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; border-bottom: 1px solid var(--gris); position: sticky; top: var(--nav-h); z-index: 50; }
+        .bouton-filtre { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border: 2px solid var(--gris); background: var(--blanc); color: var(--noir); cursor: pointer; transition: all 0.3s; border-radius: 4px; }
+        .bouton-filtre:hover, .bouton-filtre.active { background: var(--rouge); color: var(--blanc); border-color: var(--rouge); }
         .recherche { margin-left: auto; position: relative; }
-        .champ-recherche {
-            padding: 0.4rem 1rem 0.4rem 2.2rem; border: 2px solid var(--gris);
-            background: var(--blanc); color: var(--noir); outline: none;
-            width: 220px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem;
-            border-radius: 4px;
-        }
+        .champ-recherche { padding: 0.4rem 1rem 0.4rem 2.2rem; border: 2px solid var(--gris); background: var(--blanc); color: var(--noir); outline: none; width: 220px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; border-radius: 4px; }
         .icone-recherche { position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: var(--gris-fonce); }
-
-        /* Contenu */
         .conteneur { max-width: 1200px; margin: 2rem auto; padding: 0 5%; }
         .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
-        .carte {
-            background: var(--blanc); border: 1px solid var(--gris); border-radius: 8px;
-            overflow: hidden; transition: all 0.3s; cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-        }
+        .carte { background: var(--blanc); border: 1px solid var(--gris); border-radius: 8px; overflow: hidden; transition: all 0.3s; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
         .carte:hover { transform: translateY(-5px); border-color: var(--rouge); box-shadow: 0 10px 30px rgba(204,0,0,0.1); }
-        .carte-image {
-            width: 100%; height: 200px; object-fit: contain; background: var(--gris-clair);
-            border-bottom: 1px solid var(--gris);
-        }
-        .carte-placeholder {
-            width: 100%; height: 200px; background: var(--gris-clair);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: var(--gris);
-        }
+        .carte-image { width: 100%; height: 200px; object-fit: contain; background: var(--gris-clair); border-bottom: 1px solid var(--gris); }
+        .carte-placeholder { width: 100%; height: 200px; background: var(--gris-clair); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--gris); }
         .carte-corps { padding: 1.2rem; }
-        .carte-categorie {
-            display: inline-block; padding: 0.15rem 0.6rem; font-size: 0.6rem; font-weight: 700;
-            letter-spacing: 0.12em; text-transform: uppercase; color: var(--blanc);
-            background: var(--rouge); border-radius: 3px; margin-bottom: 0.6rem;
-        }
+        .carte-categorie { display: inline-block; padding: 0.15rem 0.6rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blanc); background: var(--rouge); border-radius: 3px; margin-bottom: 0.6rem; }
         .carte-titre { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--noir); margin-bottom: 0.5rem; font-weight: 700; }
         .carte-date { font-size: 0.7rem; color: var(--gris-fonce); margin-bottom: 0.5rem; }
         .carte-extrait { color: var(--gris-fonce); font-size: 0.9rem; line-height: 1.6; }
         .pagination { display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
-        .page-btn {
-            width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
-            border: 2px solid var(--gris); background: var(--blanc); color: var(--noir);
-            cursor: pointer; transition: all 0.3s; font-size: 0.8rem; font-weight: 700;
-            border-radius: 4px;
-        }
+        .page-btn { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--gris); background: var(--blanc); color: var(--noir); cursor: pointer; transition: all 0.3s; font-size: 0.8rem; font-weight: 700; border-radius: 4px; }
         .page-btn.active, .page-btn:hover { background: var(--rouge); color: var(--blanc); border-color: var(--rouge); }
-        .spinner {
-            width: 40px; height: 40px; border: 3px solid var(--gris);
-            border-top-color: var(--rouge); border-radius: 50%; animation: spin 0.8s linear infinite;
-            margin: 2rem auto;
-        }
+        .spinner { width: 40px; height: 40px; border: 3px solid var(--gris); border-top-color: var(--rouge); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 2rem auto; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .vide { text-align: center; padding: 3rem; color: var(--gris-fonce); }
-
-        /* Footer */
         footer { background: var(--noir); color: var(--blanc); padding: 3rem 5%; text-align: center; margin-top: 3rem; }
         footer .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
         footer .footer-logo span { color: var(--rouge); }
         .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin: 1.2rem 0; }
         .footer-nav a { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
         .footer-nav a:hover { color: var(--rouge); }
-
-        /* WhatsApp */
-        .wa-float {
-            position: fixed; bottom: 25px; right: 25px; z-index: 9999;
-            width: 55px; height: 55px; background: var(--whatsapp); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none;
-        }
+        .wa-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; width: 55px; height: 55px; background: var(--whatsapp); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; }
         .wa-float svg { width: 30px; height: 30px; fill: white; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .hero h1 { font-size: 2rem; }
-            .barre-filtres { padding: 0.8rem 4%; }
-            .champ-recherche { width: 160px; }
-            .grille { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .hero h1 { font-size: 2rem; } .barre-filtres { padding: 0.8rem 4%; } .champ-recherche { width: 160px; } .grille { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <!-- NAVIGATION -->
-    <nav id="navbar">
-        <a href="index.html" class="nav-logo">✦ Togbé <span>Yédy</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="decouverte.html">Découverte</a></li>
-            <li><a href="vodun.html">Vodun</a></li>
-            <li><a href="festivals.html">Festivals</a></li>
-            <li><a href="guerison.html">Guérisons</a></li>
-            <li><a href="gouvernement.html">Gouvernement</a></li>
-            <li><a href="galerie.html">Galerie</a></li>
-            <li><a href="actualites.html" class="active">Actualités</a></li>
-            <li><a href="contact.html" class="nav-cta">Contact</a></li>
-        </ul>
-        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </nav>
-    <div class="nav-mobile" id="nav-mobile">
-        <a href="index.html">Accueil</a>
-        <a href="decouverte.html">Découverte</a>
-        <a href="vodun.html">Vodun</a>
-        <a href="festivals.html">Festivals</a>
-        <a href="guerison.html">Guérisons</a>
-        <a href="gouvernement.html">Gouvernement</a>
-        <a href="galerie.html">Galerie</a>
-        <a href="actualites.html">Actualités</a>
-        <a href="contact.html">Contact</a>
+<nav id="navbar">
+    <a href="index.html" class="nav-logo">✦ Togbé <span>Yédy</span></a>
+    <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="decouverte.html">Découverte</a></li>
+        <li><a href="vodun.html">Vodun</a></li>
+        <li><a href="festivals.html">Festivals</a></li>
+        <li><a href="guerison.html">Guérisons</a></li>
+        <li><a href="gouvernement.html">Gouvernement</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="actualites.html" class="active">Actualités</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+    <a href="index.html">Accueil</a><a href="decouverte.html">Découverte</a><a href="vodun.html">Vodun</a><a href="festivals.html">Festivals</a><a href="guerison.html">Guérisons</a><a href="gouvernement.html">Gouvernement</a><a href="galerie.html">Galerie</a><a href="actualites.html">Actualités</a><a href="contact.html">Contact</a>
+</div>
+<header class="hero">
+    <h1>Actualités <span>de Sa Majesté</span></h1>
+    <p>Spiritualité, événements, distinctions, culture — suivez l'actualité du Hounnongan Togbé Yédy</p>
+</header>
+<div class="barre-filtres">
+    <button class="bouton-filtre active" data-cat="all">Tous</button>
+    <button class="bouton-filtre" data-cat="Spiritualité">Spiritualité</button>
+    <button class="bouton-filtre" data-cat="Événements">Événements</button>
+    <button class="bouton-filtre" data-cat="Distinction">Distinction</button>
+    <button class="bouton-filtre" data-cat="Culture">Culture</button>
+    <button class="bouton-filtre" data-cat="Médias">Médias</button>
+    <button class="bouton-filtre" data-cat="Gouvernement">Gouvernement</button>
+    <div class="recherche"><span class="icone-recherche">🔍</span><input type="text" class="champ-recherche" id="champRecherche" placeholder="Rechercher..."></div>
+</div>
+<div class="conteneur">
+    <div id="chargement" style="text-align:center;"><div class="spinner"></div></div>
+    <div id="grilleArticles" class="grille" style="display:none;"></div>
+    <div id="vide" class="vide" style="display:none;">Aucune actualité trouvée.</div>
+    <div id="pagination" class="pagination"></div>
+</div>
+<footer>
+    <div class="footer-logo">Togbé <span>Yédy</span></div>
+    <p style="opacity:0.7;">Hounnongan · Dignitaire du Culte Vodun · Membre du Comité des Rites Vodun</p>
+    <div class="footer-nav">
+        <a href="index.html">Accueil</a><a href="decouverte.html">Découverte</a><a href="vodun.html">Vodun</a><a href="festivals.html">Festivals</a><a href="guerison.html">Guérisons</a><a href="gouvernement.html">Gouvernement</a><a href="galerie.html">Galerie</a><a href="actualites.html">Actualités</a><a href="contact.html">Contact</a>
     </div>
+    <p style="font-size:0.7rem; opacity:0.5;">© 2026 Majesté Togbé Yédy — Patrice Hounsa. Tous droits réservés.</p>
+</footer>
+<a href="https://wa.me/2290197101008?text=Bonjour%20Majesté%20Togbé%20Yédy%2C%20je%20vous%20contacte%20depuis%20votre%20site%20officiel." target="_blank" class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
 
-    <!-- HERO -->
-    <header class="hero">
-        <h1>Actualités <span>de Sa Majesté</span></h1>
-        <p>Spiritualité, événements, distinctions, culture — suivez l'actualité du Hounnongan Togbé Yédy</p>
-    </header>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    <!-- FILTRES -->
-    <div class="barre-filtres">
-        <button class="bouton-filtre active" data-cat="all">Tous</button>
-        <button class="bouton-filtre" data-cat="Spiritualité">Spiritualité</button>
-        <button class="bouton-filtre" data-cat="Événements">Événements</button>
-        <button class="bouton-filtre" data-cat="Distinction">Distinction</button>
-        <button class="bouton-filtre" data-cat="Culture">Culture</button>
-        <button class="bouton-filtre" data-cat="Médias">Médias</button>
-        <button class="bouton-filtre" data-cat="Gouvernement">Gouvernement</button>
-        <div class="recherche">
-            <span class="icone-recherche">🔍</span>
-            <input type="text" class="champ-recherche" id="champRecherche" placeholder="Rechercher...">
-        </div>
-    </div>
+    const configFirebase = {
+        apiKey: "AIzaSyDkAX4UdiuUyfR3c5_E7qPG6xpCtWr3FYw",
+        authDomain: "togbeyedy-49129.firebaseapp.com",
+        projectId: "togbeyedy-49129",
+        storageBucket: "togbeyedy-49129.firebasestorage.app",
+        messagingSenderId: "895068990371",
+        appId: "1:895068990371:web:d9c918d6b588a6b4338816"
+    };
+    const app = initializeApp(configFirebase);
+    const db = getFirestore(app);
 
-    <!-- CONTENU DYNAMIQUE -->
-    <div class="conteneur">
-        <div id="chargement" style="text-align:center;"><div class="spinner"></div></div>
-        <div id="grilleArticles" class="grille" style="display:none;"></div>
-        <div id="vide" class="vide" style="display:none;">Aucune actualité trouvée.</div>
-        <div id="pagination" class="pagination"></div>
-    </div>
+    let tous = [], filtres = [], page = 1, parPage = 6, categorie = 'all', recherche = '';
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-logo">Togbé <span>Yédy</span></div>
-        <p style="opacity:0.7;">Hounnongan · Dignitaire du Culte Vodun · Membre du Comité des Rites Vodun</p>
-        <div class="footer-nav">
-            <a href="index.html">Accueil</a>
-            <a href="decouverte.html">Découverte</a>
-            <a href="vodun.html">Vodun</a>
-            <a href="festivals.html">Festivals</a>
-            <a href="guerison.html">Guérisons</a>
-            <a href="gouvernement.html">Gouvernement</a>
-            <a href="galerie.html">Galerie</a>
-            <a href="actualites.html">Actualités</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <p style="font-size:0.7rem; opacity:0.5;">© 2026 Majesté Togbé Yédy — Patrice Hounsa. Tous droits réservés.</p>
-    </footer>
+    function formaterDate(ts) { if (!ts) return ''; const d = ts.toDate ? ts.toDate() : new Date(ts); return d.toLocaleDateString('fr-FR', { day:'2-digit', month:'long', year:'numeric' }); }
 
-    <!-- WHATSAPP FLOTTANT -->
-    <a href="https://wa.me/2290197101008?text=Bonjour%20Majesté%20Togbé%20Yédy%2C%20je%20vous%20contacte%20depuis%20votre%20site%20officiel." target="_blank" class="wa-float" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-    </a>
+    function extrait(html, longueur=100) { const div = document.createElement('div'); div.innerHTML = html; const texte = div.textContent || ''; return texte.length > longueur ? texte.slice(0, longueur) + '…' : texte; }
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    function getFirstImage(a) {
+        if (a.images && a.images.length > 0) return a.images[0];
+        if (a.imageUrl) return a.imageUrl;
+        return null;
+    }
 
-        const configFirebase = {
-            apiKey: "AIzaSyDkAX4UdiuUyfR3c5_E7qPG6xpCtWr3FYw",
-            authDomain: "togbeyedy-49129.firebaseapp.com",
-            projectId: "togbeyedy-49129",
-            storageBucket: "togbeyedy-49129.firebasestorage.app",
-            messagingSenderId: "895068990371",
-            appId: "1:895068990371:web:d9c918d6b588a6b4338816"
-        };
-        const app = initializeApp(configFirebase);
-        const db = getFirestore(app);
+    function carteHTML(a) {
+        const firstImg = getFirstImage(a);
+        const imageHTML = firstImg ? `<img class="carte-image" src="${firstImg}" alt="${a.titre}">` : `<div class="carte-placeholder">📷</div>`;
+        return `
+        <div class="carte" onclick="location.href='article.html?id=${a.id}'">
+            ${imageHTML}
+            <div class="carte-corps">
+                <span class="carte-categorie">${a.categorie || ''}</span>
+                <h3 class="carte-titre">${a.titre}</h3>
+                <p class="carte-date">📅 ${formaterDate(a.date)}</p>
+                <p class="carte-extrait">${extrait(a.contenu)}</p>
+            </div>
+        </div>`;
+    }
 
-        let tous = [], filtres = [], page = 1, parPage = 6, categorie = 'all', recherche = '';
-
-        function formaterDate(ts) {
-            if (!ts) return '';
-            const d = ts.toDate ? ts.toDate() : new Date(ts);
-            return d.toLocaleDateString('fr-FR', { day:'2-digit', month:'long', year:'numeric' });
+    function afficher() {
+        const grille = document.getElementById('grilleArticles');
+        const vide = document.getElementById('vide');
+        const chargement = document.getElementById('chargement');
+        chargement.style.display = 'none';
+        if (filtres.length === 0) { grille.style.display = 'none'; vide.style.display = 'block'; }
+        else {
+            vide.style.display = 'none'; grille.style.display = 'grid';
+            const debut = (page - 1) * parPage;
+            const tranche = filtres.slice(debut, debut + parPage);
+            grille.innerHTML = tranche.map(carteHTML).join('');
+            afficherPagination();
         }
+    }
 
-        function extrait(html, longueur=100) {
-            const div = document.createElement('div');
-            div.innerHTML = html;
-            const texte = div.textContent || '';
-            return texte.length > longueur ? texte.slice(0, longueur) + '…' : texte;
-        }
+    function afficherPagination() {
+        const total = Math.ceil(filtres.length / parPage);
+        const pag = document.getElementById('pagination');
+        if (total <= 1) { pag.innerHTML = ''; return; }
+        pag.innerHTML = Array.from({length: total}, (_, i) => `<div class="page-btn${i+1 === page ? ' active' : ''}" data-p="${i+1}">${i+1}</div>`).join('');
+        document.querySelectorAll('.page-btn').forEach(btn => btn.addEventListener('click', (e) => { page = parseInt(e.target.dataset.p); afficher(); window.scrollTo({ top: 300, behavior: 'smooth' }); }));
+    }
 
-        function carteHTML(a) {
-            const imageHTML = a.imageUrl
-                ? `<img class="carte-image" src="${a.imageUrl}" alt="${a.titre}">`
-                : `<div class="carte-placeholder">📷</div>`;
-            return `
-            <div class="carte" onclick="location.href='article.html?id=${a.id}'">
-                ${imageHTML}
-                <div class="carte-corps">
-                    <span class="carte-categorie">${a.categorie || ''}</span>
-                    <h3 class="carte-titre">${a.titre}</h3>
-                    <p class="carte-date">📅 ${formaterDate(a.date)}</p>
-                    <p class="carte-extrait">${extrait(a.contenu)}</p>
-                </div>
-            </div>`;
-        }
+    function appliquerFiltres() {
+        filtres = tous.filter(a => { if (!a.publie) return false; if (categorie !== 'all' && a.categorie !== categorie) return false; if (recherche && !a.titre.toLowerCase().includes(recherche) && !extrait(a.contenu).toLowerCase().includes(recherche)) return false; return true; });
+        page = 1; afficher();
+    }
 
-        function afficher() {
-            const grille = document.getElementById('grilleArticles');
-            const vide = document.getElementById('vide');
-            const chargement = document.getElementById('chargement');
-            chargement.style.display = 'none';
-            if (filtres.length === 0) {
-                grille.style.display = 'none';
-                vide.style.display = 'block';
-            } else {
-                vide.style.display = 'none';
-                grille.style.display = 'grid';
-                const debut = (page - 1) * parPage;
-                const tranche = filtres.slice(debut, debut + parPage);
-                grille.innerHTML = tranche.map(carteHTML).join('');
-                afficherPagination();
-            }
-        }
-
-        function afficherPagination() {
-            const total = Math.ceil(filtres.length / parPage);
-            const pag = document.getElementById('pagination');
-            if (total <= 1) { pag.innerHTML = ''; return; }
-            pag.innerHTML = Array.from({length: total}, (_, i) =>
-                `<div class="page-btn${i+1 === page ? ' active' : ''}" data-p="${i+1}">${i+1}</div>`
-            ).join('');
-            document.querySelectorAll('.page-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    page = parseInt(e.target.dataset.p);
-                    afficher();
-                    window.scrollTo({ top: 300, behavior: 'smooth' });
-                });
-            });
-        }
-
-        function appliquerFiltres() {
-            filtres = tous.filter(a => {
-                if (!a.publie) return false;
-                if (categorie !== 'all' && a.categorie !== categorie) return false;
-                if (recherche && !a.titre.toLowerCase().includes(recherche) && !extrait(a.contenu).toLowerCase().includes(recherche)) return false;
-                return true;
-            });
-            page = 1;
-            afficher();
-        }
-
-        async function charger() {
-            try {
-                const q = query(collection(db, 'Actualités'), orderBy('date', 'desc'));
-                const snapshot = await getDocs(q);
-                tous = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-                appliquerFiltres();
-            } catch (e) {
-                document.getElementById('chargement').innerHTML = '<p style="color:var(--rouge);">Erreur de chargement : ' + e.message + '</p>';
-                console.error(e);
-            }
-        }
-
-        document.querySelectorAll('.bouton-filtre').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.bouton-filtre').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                categorie = btn.dataset.cat;
-                appliquerFiltres();
-            });
-        });
-        document.getElementById('champRecherche').addEventListener('input', e => {
-            recherche = e.target.value.toLowerCase().trim();
+    async function charger() {
+        try {
+            const q = query(collection(db, 'Actualités'), orderBy('date', 'desc'));
+            const snapshot = await getDocs(q);
+            tous = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
             appliquerFiltres();
-        });
+        } catch (e) { document.getElementById('chargement').innerHTML = '<p style="color:var(--rouge);">Erreur de chargement : ' + e.message + '</p>'; console.error(e); }
+    }
 
-        charger();
-    </script>
+    document.querySelectorAll('.bouton-filtre').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.bouton-filtre').forEach(b => b.classList.remove('active')); btn.classList.add('active'); categorie = btn.dataset.cat; appliquerFiltres(); }));
+    document.getElementById('champRecherche').addEventListener('input', e => { recherche = e.target.value.toLowerCase().trim(); appliquerFiltres(); });
 
-    <script>
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
-        const hamburger = document.getElementById('hamburger');
-        const navMobile = document.getElementById('nav-mobile');
-        hamburger.addEventListener('click', () => {
-            navMobile.classList.toggle('open');
-            hamburger.classList.toggle('open');
-        });
-        document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => {
-            navMobile.classList.remove('open');
-            hamburger.classList.remove('open');
-        }));
-    </script>
+    charger();
+</script>
+<script>
+    const navbar = document.getElementById('navbar'); window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.getElementById('hamburger'); const navMobile = document.getElementById('nav-mobile');
+    hamburger.addEventListener('click', () => { navMobile.classList.toggle('open'); hamburger.classList.toggle('open'); });
+    document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => { navMobile.classList.remove('open'); hamburger.classList.remove('open'); }));
+</script>
 </body>
 </html>
