@@ -68,6 +68,19 @@
         .message-formulaire.succes { background: #E6F4EA; color: #1B7A2C; }
         .message-formulaire.erreur { background: #FDEDED; color: #B91C1C; }
         .apercu-image { max-width: 200px; max-height: 150px; object-fit: contain; margin-top: 0.5rem; border-radius: 6px; display: none; background: #f0f2f5; }
+
+        /* Galerie d'images dynamique */
+        #imagesContainer { display: flex; flex-direction: column; gap: 0.5rem; }
+        .image-row { display: flex; gap: 0.5rem; align-items: center; }
+        .image-row input { flex: 1; }
+        .image-row button { white-space: nowrap; padding: 0.5rem 0.8rem; font-size: 0.7rem; cursor: pointer; border-radius: 4px; font-weight: bold; border: none; }
+        .btn-postimage { background: var(--fb-blue); color: white; }
+        .btn-postimage:hover { background: var(--fb-blue-hover); }
+        .btn-supprimer-image { background: var(--fb-danger); color: white; }
+        .btn-supprimer-image:hover { background: #d91f1f; }
+        .btn-ajouter-image { background: var(--gold); color: var(--fb-dark); font-weight: 700; padding: 0.6rem 1.2rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.75rem; margin-top: 0.3rem; }
+        .btn-ajouter-image:hover { background: #e5c471; }
+
         .article-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 0; border-bottom: 1px solid var(--fb-border); }
         .article-item:last-child { border-bottom: none; }
         .article-infos { flex: 1; }
@@ -109,7 +122,6 @@
         <button class="bouton-deconnexion" id="boutonDeconnexion">Déconnexion</button>
     </div>
     <div class="corps-admin">
-        <!-- Formulaire (identique à la version précédente, je le raccourcis ici pour lisibilité) -->
         <div class="carte">
             <h2 id="titreFormulaire">✍️ Nouvelle actualité</h2>
             <div class="ligne-formulaire">
@@ -126,14 +138,19 @@
                     </select>
                 </div>
             </div>
+
+            <!-- SECTION IMAGES MULTIPLES -->
             <div class="groupe-formulaire">
-                <label>Image (URL) — optionnel</label>
-                <div style="display:flex; gap:0.5rem;">
-                    <input type="text" id="champImage" placeholder="https://..." style="flex:1;">
-                    <button type="button" id="boutonPostImage" style="background:var(--fb-blue); color:white; border:none; padding:0 1rem; border-radius:6px; font-size:0.8rem; cursor:pointer;">📸 PostImage</button>
+                <label>Photos (URL) — optionnel</label>
+                <div style="background: #f0f2f5; padding: 0.5rem; border-radius: 4px; font-size: 0.7rem; color: #65676B; margin-bottom: 0.5rem;">
+                    💡 <strong>Astuce :</strong> Cliquez sur <strong>📸 PostImage</strong> pour uploader une image, copiez le <strong>« Lien direct »</strong> (deuxième lien), puis collez-le dans le champ.
                 </div>
-                <img id="imageApercu" class="apercu-image" alt="Aperçu de l'image">
+                <div id="imagesContainer">
+                    <!-- Les lignes d'images seront générées ici dynamiquement -->
+                </div>
+                <button type="button" class="btn-ajouter-image" id="btnAjouterImage">➕ Ajouter une photo</button>
             </div>
+
             <div class="groupe-formulaire"><label>Vidéo (URL) — optionnel</label><input type="text" id="champVideo" placeholder="https://www.youtube.com/watch?v=..."></div>
             <div class="groupe-formulaire">
                 <label>Contenu *</label>
@@ -194,9 +211,7 @@
     const champTitre = document.getElementById('champTitre');
     const champCategorie = document.getElementById('champCategorie');
     const zoneEditeur = document.getElementById('zoneEditeur');
-    const champImage = document.getElementById('champImage');
     const champVideo = document.getElementById('champVideo');
-    const imageApercu = document.getElementById('imageApercu');
     const titreFormulaire = document.getElementById('titreFormulaire');
     const messageFormulaire = document.getElementById('messageFormulaire');
     const listeArticles = document.getElementById('listeArticles');
@@ -204,7 +219,8 @@
     const boutonPublier = document.getElementById('boutonPublier');
     const boutonBrouillon = document.getElementById('boutonBrouillon');
     const boutonEffacer = document.getElementById('boutonEffacer');
-    const boutonPostImage = document.getElementById('boutonPostImage');
+    const imagesContainer = document.getElementById('imagesContainer');
+    const btnAjouterImage = document.getElementById('btnAjouterImage');
 
     // Gestion de la visibilité du mot de passe
     let motdepasseVisible = false;
@@ -215,15 +231,9 @@
     });
 
     // Fonctions de session
-    function estConnecte() {
-        return localStorage.getItem(CLE_SESSION) === "oui";
-    }
-    function connecter() {
-        localStorage.setItem(CLE_SESSION, "oui");
-    }
-    function seDeconnecter() {
-        localStorage.removeItem(CLE_SESSION);
-    }
+    function estConnecte() { return localStorage.getItem(CLE_SESSION) === "oui"; }
+    function connecter() { localStorage.setItem(CLE_SESSION, "oui"); }
+    function seDeconnecter() { localStorage.removeItem(CLE_SESSION); }
 
     if (estConnecte()) {
         ecranConnexion.style.display = 'none';
@@ -245,7 +255,6 @@
             inputIdentifiant.value = '';
             inputMotdepasse.value = '';
             erreurConnexion.style.display = 'none';
-            // Réinitialiser la visibilité
             inputMotdepasse.type = 'password';
             boutonOeil.textContent = '👁️';
             motdepasseVisible = false;
@@ -254,10 +263,7 @@
             setTimeout(() => erreurConnexion.style.display = 'none', 3000);
         }
     });
-
-    inputMotdepasse.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') boutonConnexion.click();
-    });
+    inputMotdepasse.addEventListener('keydown', (e) => { if (e.key === 'Enter') boutonConnexion.click(); });
 
     boutonDeconnexion.addEventListener('click', () => {
         seDeconnecter();
@@ -271,33 +277,58 @@
         reinitialiserFormulaire();
     });
 
-    // ... le reste du code est identique à la version précédente (reinitialiserFormulaire, enregistrerArticle, etc.)
-    // Je l'inclus intégralement pour que la page soit complète et fonctionnelle.
+    // ----- GESTION DES IMAGES MULTIPLES -----
+    function creerLigneImage(valeur = '') {
+        const row = document.createElement('div');
+        row.className = 'image-row';
+        row.innerHTML = `
+            <input type="text" class="image-input" value="${valeur}" placeholder="https://..." />
+            <button type="button" class="btn-postimage">📸 PostImage</button>
+            <button type="button" class="btn-supprimer-image">🗑️</button>
+        `;
+        row.querySelector('.btn-postimage').addEventListener('click', () => window.open('https://postimages.org/fr/', '_blank'));
+        row.querySelector('.btn-supprimer-image').addEventListener('click', () => row.remove());
+        imagesContainer.appendChild(row);
+    }
+
+    btnAjouterImage.addEventListener('click', () => creerLigneImage());
+
+    function getImagesArray() {
+        const inputs = document.querySelectorAll('#imagesContainer .image-input');
+        const urls = [];
+        inputs.forEach(inp => {
+            const val = inp.value.trim();
+            if (val && val.startsWith('http')) urls.push(val);
+        });
+        return urls;
+    }
+
+    function remplirChampsImages(urls) {
+        imagesContainer.innerHTML = '';
+        if (urls && urls.length > 0) {
+            urls.forEach(url => creerLigneImage(url));
+        }
+        // Toujours une ligne vide si aucune
+        if (!urls || urls.length === 0) creerLigneImage();
+    }
+
+    // Initialisation : une ligne vide au chargement
+    creerLigneImage();
+
+    // ----- FIN GESTION IMAGES -----
 
     function reinitialiserFormulaire() {
         idEnCours = null;
         champTitre.value = '';
         champCategorie.value = '';
         zoneEditeur.innerHTML = '';
-        champImage.value = '';
         champVideo.value = '';
-        imageApercu.style.display = 'none';
+        imagesContainer.innerHTML = '';
+        creerLigneImage();
         titreFormulaire.textContent = '✍️ Nouvelle actualité';
         messageFormulaire.style.display = 'none';
     }
     boutonEffacer.addEventListener('click', reinitialiserFormulaire);
-
-    champImage.addEventListener('input', () => {
-        const url = champImage.value.trim();
-        if (!url || !url.startsWith('http')) {
-            imageApercu.style.display = 'none';
-            return;
-        }
-        imageApercu.src = url;
-        imageApercu.style.display = 'block';
-    });
-
-    boutonPostImage.addEventListener('click', () => window.open('https://postimages.org/fr/', '_blank'));
 
     async function enregistrerArticle(publie) {
         const titre = champTitre.value.trim();
@@ -307,10 +338,11 @@
             afficherMessage('Veuillez remplir tous les champs obligatoires.', 'erreur');
             return;
         }
-        const imageUrl = champImage.value.trim() || null;
+        const images = getImagesArray();
+        const imageUrl = images.length > 0 ? images[0] : null; // rétrocompatibilité
         const videoUrl = champVideo.value.trim() || null;
         const maintenant = Timestamp.now();
-        const donnees = { titre, categorie, contenu, publie, auteur: 'Majesté Togbé Yédy', imageUrl, videoUrl, updatedAt: maintenant };
+        const donnees = { titre, categorie, contenu, publie, auteur: 'Majesté Togbé Yédy', images, imageUrl, videoUrl, updatedAt: maintenant };
         try {
             if (idEnCours) {
                 await updateDoc(doc(db, 'Actualités', idEnCours), donnees);
@@ -373,10 +405,9 @@
         champTitre.value = a.titre || '';
         champCategorie.value = a.categorie || '';
         zoneEditeur.innerHTML = a.contenu || '';
-        champImage.value = a.imageUrl || '';
         champVideo.value = a.videoUrl || '';
-        if (a.imageUrl) { imageApercu.src = a.imageUrl; imageApercu.style.display = 'block'; }
-        else { imageApercu.style.display = 'none'; }
+        const urls = a.images && a.images.length > 0 ? a.images : (a.imageUrl ? [a.imageUrl] : []);
+        remplirChampsImages(urls);
         titreFormulaire.textContent = '✍️ Modifier l\'actualité';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
