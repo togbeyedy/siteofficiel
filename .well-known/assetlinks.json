@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.togbeyedy.app",
+      "sha256_cert_fingerprints": [
+        "BF:1E:52:D8:06:AD:1C:13:14:C9:6F:86:79:D0:91:93:7A:02:D9:9A:2C:6F:BA:35:8D:2F:75:DA:6C:4D:B0:C9"
+      ]
+    }
+  }
+]
