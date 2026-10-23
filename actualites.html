@@ -230,5 +230,14 @@
     hamburger.addEventListener('click', () => { navMobile.classList.toggle('open'); hamburger.classList.toggle('open'); });
     document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', () => { navMobile.classList.remove('open'); hamburger.classList.remove('open'); }));
 </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('Service Worker enregistré :', reg.scope))
+        .catch(err => console.error('Erreur Service Worker :', err));
+    });
+  }
+</script>    
 </body>
 </html>
