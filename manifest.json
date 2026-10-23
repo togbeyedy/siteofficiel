@@ -1,0 +1,26 @@
+{
+  "name": "Majesté Togbé Yédy",
+  "short_name": "Togbé Yédy",
+  "description": "Site officiel de Sa Majesté Togbé Yédy, Dignitaire Vodun du Bénin.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#CC0000",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
